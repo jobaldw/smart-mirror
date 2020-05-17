@@ -2,22 +2,22 @@ package db
 
 import (
 	"what-to-watch/internal/db/mgo"
+
 	"what-to-watch/pkg/config"
-	"what-to-watch/pkg/log"
+
+	"github.com/pkg/errors"
 )
 
 //New creates the mongo instance to be used throughout the app
-func New(conf config.Config) (mgo.DBO, error) {
-	log.Trace("initializing database...")
-
-	mongo := mgo.DBO{
-		URI:         conf.MongoURI,
-		Database:    conf.Database,
-		Collections: conf.Collections,
-		Ctx:         nil,
-		Client:      nil,
-		Session:     nil,
+func New(conf config.Config) (mgo.Mongo, error) {
+	ds, err := mgo.Init(conf)
+	if err != nil {
+		return ds, errors.WithMessage(err, "could not initialize mongo")
 	}
 
-	return mongo, mongo.Connect(mongo.URI)
+	if err := ds.Connect(); err != nil {
+		return ds, errors.WithMessage(err, "could not connect to mongo")
+	}
+
+	return ds, nil
 }

@@ -7,12 +7,13 @@ import (
 
 	"what-to-watch/internal/controller"
 	"what-to-watch/internal/model"
-	"what-to-watch/internal/service"
+
 	"what-to-watch/pkg/config"
 	"what-to-watch/pkg/log"
 	"what-to-watch/pkg/router"
 
 	"github.com/gorilla/mux"
+	"github.com/sirupsen/logrus"
 )
 
 //Start creates and runs the app server
@@ -25,7 +26,7 @@ func Start(conf config.Config, ctrl controller.Controller) {
 
 	router.HandleFunc("/movie", addMovie(ctrl)).Methods(http.MethodPost)
 
-	log.Info(fmt.Sprintf("API is up and running on port :%d", conf.Port))
+	log.Entry.WithFields(logrus.Fields{"method": "Start", "port": conf.Port}).Info("API is up and running...")
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", conf.Port), router))
 }
 
@@ -37,6 +38,7 @@ func health() http.HandlerFunc {
 			Status: "Up",
 		}
 
+		log.Entry.WithFields(logrus.Fields{"method": "health", "status": resp.Status}).Info("API is healthy")
 		router.Response(w, http.StatusOK, resp)
 	}
 }
@@ -51,15 +53,17 @@ func ready(ctrl controller.Controller) http.HandlerFunc {
 			Status: "Up",
 		}
 
-		if err := service.DependencyCheck(ctrl); err != nil {
+		if err := ctrl.DependencyCheck(); err != nil {
 			resp.Status = "Down"
 			resp.Err = err.Error()
+			log.Entry.WithField("method", "ready").Error(err)
 			router.Response(w, http.StatusGatewayTimeout, resp)
 
 			return
 		}
 
 		resp.MSG = "API is ready"
+		log.Entry.WithField("method", "ready").Info(resp.MSG)
 		router.Response(w, http.StatusOK, resp)
 	}
 }
@@ -69,23 +73,30 @@ func addMovie(ctrl controller.Controller) http.HandlerFunc {
 		var movie = model.Movie{}
 
 		resp := struct {
-			MSG string `json:"msg,omitempty"`
-			Err string `json:"error,omitempty"`
+			ID  interface{} `json:"id,omitempty"`
+			MSG string      `json:"msg,omitempty"`
+			Err string      `json:"error,omitempty"`
 		}{}
 
 		if err := json.NewDecoder(r.Body).Decode(&movie); err != nil {
 			resp.Err = err.Error()
+			log.Entry.WithFields(logrus.Fields{"method": "addMovie", "title": movie.Name}).Error(err)
 			router.Response(w, http.StatusBadRequest, resp)
 			return
 		}
 
-		if err := service.AddMovie(ctrl, movie); err != nil {
+		id, err := ctrl.AddMovie(movie)
+		if err != nil {
 			resp.Err = err.Error()
+			log.Entry.WithFields(logrus.Fields{"method": "addMovie", "title": movie.Name}).Error(err)
 			router.Response(w, http.StatusUnprocessableEntity, resp)
 			return
 		}
 
-		resp.MSG = "added " + movie.Name
+		resp.ID = id
+		resp.MSG = "added movie"
+
+		log.Entry.WithFields(logrus.Fields{"method": "addMovie", "id": id, "title": movie.Name}).Info(resp.MSG)
 		router.Response(w, http.StatusOK, resp)
 	}
 }
