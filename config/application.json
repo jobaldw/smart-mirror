@@ -1,0 +1,6 @@
+{
+    "app": "watch-to-watch",
+    "port": 3000,
+    "log_level": "debug",
+    "stack_trace": false
+}
