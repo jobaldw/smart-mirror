@@ -14,6 +14,10 @@ type Config struct {
 	Port       int          `json:"port"`
 	LogLevel   logrus.Level `json:"log_level"`
 	StackTrace bool         `json:"stack_trace"`
+
+	MongoURI    string            `json:"mongo_uri"`
+	Database    string            `json:"database"`
+	Collections map[string]string `json:"collections"`
 }
 
 //Marshal retrieves configurables for the app
