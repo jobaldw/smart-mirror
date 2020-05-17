@@ -22,11 +22,9 @@ type Config struct {
 
 //Marshal retrieves configurables for the app
 func Marshal() (conf Config, err error) {
-	log.Trace("marshaling config(s)...")
-
 	err = gonfig.GetConf("config/application.json", &conf)
 	if err != nil {
-		return conf, errors.Wrap(err, "could not read config")
+		return conf, errors.WithMessage(err, "could not read config")
 	}
 
 	log.Configure(log.Logger{
