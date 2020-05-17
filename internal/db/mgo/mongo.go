@@ -49,7 +49,7 @@ func Init(conf config.Config) (Mongo, error) {
 		return Mongo{}, err
 	}
 
-	return Mongo{URI: uri, Name: conf.Database}, err
+	return Mongo{URI: uri, Name: conf.Database, Collections: conf.Collections}, err
 }
 
 //Connect attempt to connect to a database
@@ -97,17 +97,15 @@ func (m *Mongo) Insert(i interface{}) (*mongo.InsertOneResult, error) {
 		v.Updated = v.Created
 		v.Watched = false
 
-		log.Entry.WithFields(logrus.Fields{"movie": v.Name, "database": m.Name, "method": "Insert"}).Debug("inserting movie...")
+		log.Entry.WithFields(logrus.Fields{"movie": v.Name, "database": m.Name, "collection": m.Collections[movieKey], "method": "Insert"}).Debug("inserting movie...")
 		return m.Database.Collection(m.Collections[movieKey]).InsertOne(context.Background(), v)
-
 	case model.Show:
 		v.Created = now
 		v.Updated = v.Created
 		v.Watched = false
 
-		log.Entry.WithFields(logrus.Fields{"show": v.Name, "database": m.Name, "method": "Insert"}).Debug("inserting show...")
-		return m.Database.Collection(m.Collections[showKey]).InsertOne(context.Background(), v)
-
+		log.Entry.WithFields(logrus.Fields{"show": v.Name, "database": m.Name, "collection": m.Collections[showKey], "method": "Insert"}).Debug("inserting show...")
+		return m.Database.Collection(m.Collections[showKey]).InsertOne(context.Background(), v, options.InsertOne())
 	default:
 		log.Entry.WithFields(logrus.Fields{"database": m.Name, "method": "Insert"}).Error(ErrModelNotSupported)
 		return nil, ErrModelNotSupported

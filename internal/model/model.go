@@ -6,8 +6,9 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-type elements struct {
-	ID *primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
+//Elements additional fields
+type Elements struct {
+	ID *primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
 
 	Name      string    `bson:"name,omitempty" json:"name,omitempty"`
 	Genres    []string  `bson:"genres,omitempty" json:"genres,omitempty"`
@@ -20,14 +21,14 @@ type elements struct {
 
 //Movie model
 type Movie struct {
-	elements `bson:",inline"`
+	Elements `bson:",inline" json:",inline"`
 
 	Franchise string `bson:"franchise,omitempty" json:"franchise,omitempty"`
 }
 
 //Show model
 type Show struct {
-	elements `bson:",inline"`
+	Elements `bson:",inline" json:",inline"`
 
 	Review  string `bson:"review,omitempty" json:"review,omitempty"`
 	Airing  bool   `bson:"airing,omitempty" json:"airing,omitempty"`
