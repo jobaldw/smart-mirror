@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"time"
 
+	"what-to-watch/internal/model"
 	"what-to-watch/pkg/log"
 
 	"github.com/pkg/errors"
@@ -52,6 +53,22 @@ func (m *DBO) Ping() error {
 	err := m.Client.Ping(m.Ctx, readpref.Primary())
 	if err != nil {
 		return errors.Wrapf(err, "could not ping database")
+	}
+
+	return err
+}
+
+//Insert adds a new record to the database
+func (m *DBO) Insert(movie model.Movie) error {
+	log.Trace("inserting new movie...")
+
+	movie.Created = time.Now()
+	movie.Updated = movie.Created
+	movie.Watched = false
+
+	_, err := m.Client.Database(m.Database).Collection(m.Collections["movies"]).InsertOne(m.Ctx, movie)
+	if err != nil {
+		return errors.Wrapf(err, "could not insert new movie")
 	}
 
 	return err

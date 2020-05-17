@@ -1,45 +1,29 @@
 package service
 
 import (
-	"net/http"
-
+	"fmt"
 	"what-to-watch/internal/controller"
-	"what-to-watch/pkg/router"
+	"what-to-watch/internal/model"
+	"what-to-watch/pkg/log"
+
+	"github.com/pkg/errors"
 )
 
-//Health checks status of app
-func Health() http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		resp := struct {
-			Status string
-		}{
-			Status: "Up",
-		}
-
-		router.Response(w, http.StatusOK, resp)
-	}
+//DependencyCheck test dependencies
+func DependencyCheck(ctrl controller.Controller) error {
+	return ctrl.Datasource.Ping()
 }
 
-//Ready checks status of app
-func Ready(ctrl controller.Controller) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		resp := struct {
-			Status string
-			MSG    string `json:"msg,omitempty"`
-			Err    string `json:"error,omitempty"`
-		}{
-			Status: "Up",
-		}
+//AddMovie inserts movie
+func AddMovie(ctrl controller.Controller, movie model.Movie) error {
+	log.Trace("inserting  new movie...")
 
-		if err := ctrl.Datasource.Ping(); err != nil {
-			resp.Status = "Down"
-			resp.Err = err.Error()
-			router.Response(w, http.StatusGatewayTimeout, resp)
-
-			return
-		}
-
-		resp.MSG = "API is ready"
-		router.Response(w, http.StatusOK, resp)
+	err := ctrl.Datasource.Insert(movie)
+	if err != nil {
+		return errors.Wrapf(err, "could not add "+movie.Name)
 	}
+
+	log.Info(fmt.Sprintf("added %v to database", movie.Name))
+
+	return err
 }
