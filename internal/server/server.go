@@ -18,6 +18,7 @@ func Start(conf config.Config, ctrl controller.Controller) {
 
 	router := mux.NewRouter()
 	router.HandleFunc("/health", service.Health()).Methods(http.MethodGet)
+	router.HandleFunc("/ready", service.Ready(ctrl)).Methods(http.MethodGet)
 
 	log.Info(fmt.Sprintf("API is up and running on port :%d", conf.Port))
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", conf.Port), router))
