@@ -32,7 +32,6 @@ func (c *Controller) Check() error {
 //Add inserts movie or show
 func (c *Controller) Add(object interface{}) (interface{}, error) {
 	result, err := c.Datasource.Insert(object)
-
 	if err != nil {
 		return nil, errors.WithMessagef(err, "could not add %T", object)
 	}
@@ -40,10 +39,16 @@ func (c *Controller) Add(object interface{}) (interface{}, error) {
 	return result.InsertedID, err
 }
 
+//Retrieve finds movie or show
+func (c *Controller) Retrieve(id, key string) ([]interface{}, int, error) {
+	results, count, err := c.Datasource.Find(id, key)
+
+	return results, count, err
+}
+
 //Remove deletes movie or show
 func (c *Controller) Remove(id, key string) (int, error) {
 	result, err := c.Datasource.Delete(id, key)
-
 	if err != nil {
 		return 0, errors.WithMessagef(err, "could not remove %v", key)
 	}

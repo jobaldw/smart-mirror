@@ -119,9 +119,44 @@ func (m *Mongo) Insert(i interface{}) (*mongo.InsertOneResult, error) {
 	}
 }
 
+//Find retrieves a record frome the database
+func (m *Mongo) Find(id, key string) ([]interface{}, int, error) {
+	hex, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return nil, 0, err
+	}
+
+	filter := bson.M{"_id": hex}
+
+	switch key {
+	case MovieKey:
+		elem := model.Movie{}
+
+		log.Entry.WithFields(logrus.Fields{"id": id, "database": m.Name, "collection": m.Collections[MovieKey], "method": "Find"}).Debug("finding movie...")
+		cur, err := m.Database.Collection(m.Collections[MovieKey]).Find(context.Background(), filter, options.Find())
+		if err != nil {
+			return nil, 0, err
+		}
+
+		return getResults(cur, elem)
+	case ShowKey:
+		elem := model.Show{}
+
+		log.Entry.WithFields(logrus.Fields{"id": id, "database": m.Name, "collection": m.Collections[ShowKey], "method": "Find"}).Debug("finding show...")
+		cur, err := m.Database.Collection(m.Collections[ShowKey]).Find(context.Background(), filter, options.Find())
+		if err != nil {
+			return nil, 0, err
+		}
+
+		return getResults(cur, elem)
+	default:
+		log.Entry.WithFields(logrus.Fields{"database": m.Name, "method": "Delete"}).Error(ErrModelNotSupported)
+		return nil, 0, ErrModelNotSupported
+	}
+}
+
 //Delete removes a new record frome the database
 func (m *Mongo) Delete(id, key string) (*mongo.DeleteResult, error) {
-
 	hex, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		return nil, err
@@ -140,4 +175,22 @@ func (m *Mongo) Delete(id, key string) (*mongo.DeleteResult, error) {
 		log.Entry.WithFields(logrus.Fields{"database": m.Name, "method": "Delete"}).Error(ErrModelNotSupported)
 		return nil, ErrModelNotSupported
 	}
+}
+
+func getResults(cur *mongo.Cursor, elem interface{}) (results []interface{}, count int, err error) {
+	defer cur.Close(context.TODO())
+	for cur.Next(context.TODO()) {
+		err = cur.Decode(&elem)
+		if err != nil {
+			return results, count, err
+		}
+
+		count++
+		results = append(results, elem)
+	}
+	if err = cur.Err(); err != nil {
+		return results, count, err
+	}
+
+	return results, count, err
 }
