@@ -13,14 +13,19 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
+	"gopkg.in/mgo.v2/bson"
 )
 
 var (
-	movieKey = "movies"
-	showKey  = "shows"
+	//MovieKey for movie collection
+	MovieKey = "movies"
+
+	//ShowKey for show collection
+	ShowKey = "shows"
 
 	//ErrModelNotSupported can not handle request for given model
 	ErrModelNotSupported = errors.New("model no supported")
@@ -97,17 +102,40 @@ func (m *Mongo) Insert(i interface{}) (*mongo.InsertOneResult, error) {
 		v.Updated = v.Created
 		v.Watched = false
 
-		log.Entry.WithFields(logrus.Fields{"movie": v.Name, "database": m.Name, "collection": m.Collections[movieKey], "method": "Insert"}).Debug("inserting movie...")
-		return m.Database.Collection(m.Collections[movieKey]).InsertOne(context.Background(), v)
+		log.Entry.WithFields(logrus.Fields{"movie": v.Name, "database": m.Name, "collection": m.Collections[MovieKey], "method": "Insert"}).Debug("inserting movie...")
+		return m.Database.Collection(m.Collections[MovieKey]).InsertOne(context.Background(), v)
 	case model.Show:
 		v.Created = now
 		v.Updated = v.Created
 		v.Watched = false
 
-		log.Entry.WithFields(logrus.Fields{"show": v.Name, "database": m.Name, "collection": m.Collections[showKey], "method": "Insert"}).Debug("inserting show...")
-		return m.Database.Collection(m.Collections[showKey]).InsertOne(context.Background(), v, options.InsertOne())
+		log.Entry.WithFields(logrus.Fields{"show": v.Name, "database": m.Name, "collection": m.Collections[ShowKey], "method": "Insert"}).Debug("inserting show...")
+		return m.Database.Collection(m.Collections[ShowKey]).InsertOne(context.Background(), v, options.InsertOne())
 	default:
 		log.Entry.WithFields(logrus.Fields{"database": m.Name, "method": "Insert"}).Error(ErrModelNotSupported)
+		return nil, ErrModelNotSupported
+	}
+}
+
+//Delete removes a new record frome the database
+func (m *Mongo) Delete(id, key string) (*mongo.DeleteResult, error) {
+
+	hex, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return nil, err
+	}
+
+	filter := bson.M{"_id": hex}
+
+	switch key {
+	case MovieKey:
+		log.Entry.WithFields(logrus.Fields{"id": id, "database": m.Name, "collection": m.Collections[MovieKey], "method": "Delete"}).Debug("deleteing movie...")
+		return m.Database.Collection(m.Collections[MovieKey]).DeleteOne(context.Background(), filter, options.Delete())
+	case ShowKey:
+		log.Entry.WithFields(logrus.Fields{"id": id, "database": m.Name, "collection": m.Collections[ShowKey], "method": "Delete"}).Debug("deleteing show...")
+		return m.Database.Collection(m.Collections[ShowKey]).DeleteOne(context.Background(), filter, options.Delete())
+	default:
+		log.Entry.WithFields(logrus.Fields{"database": m.Name, "method": "Delete"}).Error(ErrModelNotSupported)
 		return nil, ErrModelNotSupported
 	}
 }

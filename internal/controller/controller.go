@@ -3,7 +3,6 @@ package controller
 import (
 	"what-to-watch/internal/db"
 	"what-to-watch/internal/db/mgo"
-	"what-to-watch/internal/model"
 
 	"what-to-watch/pkg/config"
 
@@ -25,17 +24,29 @@ func New(conf config.Config) (Controller, error) {
 	return Controller{Datasource: datasource}, err
 }
 
-//DependencyCheck test dependencies
-func (c *Controller) DependencyCheck() error {
+//Check test dependencies
+func (c *Controller) Check() error {
 	return c.Datasource.Ping()
 }
 
-//AddMovie inserts movie
-func (c *Controller) AddMovie(movie model.Movie) (id interface{}, err error) {
-	result, err := c.Datasource.Insert(movie)
+//Add inserts movie or show
+func (c *Controller) Add(object interface{}) (interface{}, error) {
+	result, err := c.Datasource.Insert(object)
+
 	if err != nil {
-		return id, errors.WithMessage(err, "could not add movie")
+		return nil, errors.WithMessagef(err, "could not add %T", object)
 	}
 
 	return result.InsertedID, err
+}
+
+//Remove deletes movie or show
+func (c *Controller) Remove(id, key string) (int, error) {
+	result, err := c.Datasource.Delete(id, key)
+
+	if err != nil {
+		return 0, errors.WithMessagef(err, "could not remove %v", key)
+	}
+
+	return int(result.DeletedCount), err
 }
