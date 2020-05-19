@@ -2,13 +2,9 @@ package mgo
 
 import (
 	"context"
-	"encoding/base64"
 	"net/url"
 	"time"
 
-	"what-to-watch/internal/model"
-
-	"what-to-watch/pkg/config"
 	"what-to-watch/pkg/log"
 
 	"github.com/pkg/errors"
@@ -24,13 +20,10 @@ import (
 
 var (
 	//MovieKey for movie collection
-	MovieKey = "movies"
+	MovieKey = "movie"
 
 	//ShowKey for show collection
-	ShowKey = "shows"
-
-	//ErrModelNotSupported can not handle request for given model
-	ErrModelNotSupported = errors.New("model no supported")
+	ShowKey = "show"
 )
 
 //Mongo configurations for mongo
@@ -45,21 +38,15 @@ type Mongo struct {
 }
 
 //Init mongo instance
-func Init(conf config.Config) (Mongo, error) {
-	rawURI, err := base64.RawStdEncoding.DecodeString(conf.MongoURI)
-	if err != nil {
-		return Mongo{}, err
+func Init(uri *url.URL, database string, collections map[string]string) Mongo {
+	return Mongo{
+		URI:         uri,
+		Name:        database,
+		Collections: collections,
 	}
-
-	uri, err := url.Parse(string(rawURI))
-	if err != nil {
-		return Mongo{}, err
-	}
-
-	return Mongo{URI: uri, Name: conf.Database, Collections: conf.Collections}, err
 }
 
-//Connect attempt to connect to a database
+//Connect to mongo
 func (m *Mongo) Connect() error {
 	client, err := mongo.NewClient(options.Client().ApplyURI(m.URI.String()))
 	if err != nil {
@@ -79,7 +66,7 @@ func (m *Mongo) Connect() error {
 	return err
 }
 
-//Ping test connection to database
+//Ping mongo
 func (m *Mongo) Ping() error {
 	if m.Database == nil {
 		return errors.New("could not connect to database")
@@ -94,103 +81,57 @@ func (m *Mongo) Ping() error {
 	return nil
 }
 
-//Insert adds a new record to the database
-func (m *Mongo) Insert(i interface{}) (*mongo.InsertOneResult, error) {
-	now := time.Now()
+//Insert record in mongo
+func (m *Mongo) Insert(doc interface{}, title, key string) (*mongo.InsertOneResult, error) {
+	log.Entry.WithFields(logrus.Fields{
+		key:          title,
+		"database":   m.Name,
+		"collection": m.Collections[key],
+		"method":     "Insert"},
+	).Debug("inserting...")
 
-	switch v := i.(type) {
-	case model.Movie:
-		v.Created = now
-		v.Updated = v.Created
-		v.Watched = false
-
-		log.Entry.WithFields(logrus.Fields{"movie": v.Name, "database": m.Name, "collection": m.Collections[MovieKey], "method": "Insert"}).Debug("inserting movie...")
-		return m.Database.Collection(m.Collections[MovieKey]).InsertOne(context.Background(), v)
-	case model.Show:
-		v.Created = now
-		v.Updated = v.Created
-		v.Watched = false
-
-		log.Entry.WithFields(logrus.Fields{"show": v.Name, "database": m.Name, "collection": m.Collections[ShowKey], "method": "Insert"}).Debug("inserting show...")
-		return m.Database.Collection(m.Collections[ShowKey]).InsertOne(context.Background(), v, options.InsertOne())
-	default:
-		log.Entry.WithFields(logrus.Fields{"database": m.Name, "method": "Insert"}).Error(ErrModelNotSupported)
-		return nil, ErrModelNotSupported
-	}
+	collection := m.Database.Collection(m.Collections[key])
+	return collection.InsertOne(context.Background(), doc, options.InsertOne())
 }
 
-//Find retrieves a record frome the database
-func (m *Mongo) Find(id, key string) ([]interface{}, int, error) {
-	hex, err := primitive.ObjectIDFromHex(id)
-	if err != nil {
-		return nil, 0, err
-	}
+//FindOne record in mongo
+func (m *Mongo) FindOne(id primitive.ObjectID, key string) *mongo.SingleResult {
+	log.Entry.WithFields(logrus.Fields{
+		"id":         id.Hex(),
+		"database":   m.Name,
+		"collection": m.Collections[key],
+		"method":     "FindOne"},
+	).Debug("finding...")
 
-	filter := bson.M{"_id": hex}
-
-	switch key {
-	case MovieKey:
-		elem := model.Movie{}
-
-		log.Entry.WithFields(logrus.Fields{"id": id, "database": m.Name, "collection": m.Collections[MovieKey], "method": "Find"}).Debug("finding movie...")
-		cur, err := m.Database.Collection(m.Collections[MovieKey]).Find(context.Background(), filter, options.Find())
-		if err != nil {
-			return nil, 0, err
-		}
-
-		return getResults(cur, elem)
-	case ShowKey:
-		elem := model.Show{}
-
-		log.Entry.WithFields(logrus.Fields{"id": id, "database": m.Name, "collection": m.Collections[ShowKey], "method": "Find"}).Debug("finding show...")
-		cur, err := m.Database.Collection(m.Collections[ShowKey]).Find(context.Background(), filter, options.Find())
-		if err != nil {
-			return nil, 0, err
-		}
-
-		return getResults(cur, elem)
-	default:
-		log.Entry.WithFields(logrus.Fields{"database": m.Name, "method": "Delete"}).Error(ErrModelNotSupported)
-		return nil, 0, ErrModelNotSupported
-	}
+	filter := bson.M{"_id": id}
+	collection := m.Database.Collection(m.Collections[key])
+	return collection.FindOne(context.Background(), filter, options.FindOne())
 }
 
-//Delete removes a new record frome the database
-func (m *Mongo) Delete(id, key string) (*mongo.DeleteResult, error) {
-	hex, err := primitive.ObjectIDFromHex(id)
-	if err != nil {
-		return nil, err
-	}
+//FindMany record in mongo
+func (m *Mongo) FindMany(key string) (*mongo.Cursor, error) {
+	log.Entry.WithFields(logrus.Fields{
+		"database":   m.Name,
+		"collection": m.Collections[key],
+		"method":     "FindMany"},
+	).Debug("finding...")
 
-	filter := bson.M{"_id": hex}
-
-	switch key {
-	case MovieKey:
-		log.Entry.WithFields(logrus.Fields{"id": id, "database": m.Name, "collection": m.Collections[MovieKey], "method": "Delete"}).Debug("deleteing movie...")
-		return m.Database.Collection(m.Collections[MovieKey]).DeleteOne(context.Background(), filter, options.Delete())
-	case ShowKey:
-		log.Entry.WithFields(logrus.Fields{"id": id, "database": m.Name, "collection": m.Collections[ShowKey], "method": "Delete"}).Debug("deleteing show...")
-		return m.Database.Collection(m.Collections[ShowKey]).DeleteOne(context.Background(), filter, options.Delete())
-	default:
-		log.Entry.WithFields(logrus.Fields{"database": m.Name, "method": "Delete"}).Error(ErrModelNotSupported)
-		return nil, ErrModelNotSupported
-	}
+	filter := bson.M{}
+	collection := m.Database.Collection(m.Collections[key])
+	return collection.Find(context.Background(), filter, options.Find())
 }
 
-func getResults(cur *mongo.Cursor, elem interface{}) (results []interface{}, count int, err error) {
-	defer cur.Close(context.TODO())
-	for cur.Next(context.TODO()) {
-		err = cur.Decode(&elem)
-		if err != nil {
-			return results, count, err
-		}
+//Delete record in mongo
+func (m *Mongo) Delete(id primitive.ObjectID, key string) (*mongo.DeleteResult, error) {
+	log.Entry.WithFields(logrus.Fields{
+		"id":         id.Hex(),
+		"database":   m.Name,
+		"collection": m.Collections[key],
+		"method":     "Delete"},
+	).Debug("deleteing...")
 
-		count++
-		results = append(results, elem)
-	}
-	if err = cur.Err(); err != nil {
-		return results, count, err
-	}
+	filter := bson.M{"_id": id}
+	collection := m.Database.Collection(m.Collections[key])
+	return collection.DeleteOne(context.Background(), filter, options.Delete())
 
-	return results, count, err
 }
