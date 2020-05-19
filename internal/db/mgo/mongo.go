@@ -53,7 +53,8 @@ func (m *Mongo) Connect() error {
 		return err
 	}
 
-	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
 	err = client.Connect(ctx)
 	if err != nil {
 		return err
@@ -72,7 +73,9 @@ func (m *Mongo) Ping() error {
 		return errors.New("could not connect to database")
 	}
 
-	ctx, _ := context.WithTimeout(context.Background(), 2*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	defer cancel()
+
 	if err := m.Database.Client().Ping(ctx, readpref.Primary()); err != nil {
 		return err
 	}
