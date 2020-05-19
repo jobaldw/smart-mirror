@@ -59,14 +59,15 @@ func (c *Controller) Get(id string) (show model.Show, err error) {
 //GetMany show
 func (c *Controller) GetMany() (shows []model.Show, count int, err error) {
 	show := model.Show{}
+	ctx := context.TODO()
 
 	results, err := c.Datasource.FindMany(mgo.ShowKey)
 	if err != nil {
 		return shows, count, err
 	}
 
-	defer results.Close(context.TODO())
-	for results.Next(context.TODO()) {
+	defer results.Close(ctx)
+	for results.Next(ctx) {
 		err = results.Decode(&show)
 		if err != nil {
 			return shows, count, err

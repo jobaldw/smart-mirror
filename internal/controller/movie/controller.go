@@ -59,14 +59,15 @@ func (c *Controller) Get(id string) (movie model.Movie, err error) {
 //GetMany movie
 func (c *Controller) GetMany() (movies []model.Movie, count int, err error) {
 	movie := model.Movie{}
+	ctx := context.TODO()
 
 	results, err := c.Datasource.FindMany(mgo.MovieKey)
 	if err != nil {
 		return movies, count, err
 	}
 
-	defer results.Close(context.TODO())
-	for results.Next(context.TODO()) {
+	defer results.Close(ctx)
+	for results.Next(ctx) {
 		err = results.Decode(&movie)
 		if err != nil {
 			return movies, count, err

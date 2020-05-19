@@ -60,8 +60,32 @@ func Retrieve(ctrl show.Controller) http.HandlerFunc {
 		}
 
 		resp.ID = id
-		resp.MSG = "retrieved movie"
+		resp.MSG = "retrieved show"
 		resp.Show = show
+
+		log.Entry.WithFields(logrus.Fields{"method": "Retrieve", "id": id}).Info(resp.MSG)
+		router.Response(w, http.StatusOK, resp)
+	}
+}
+
+//RetrieveAll show
+func RetrieveAll(ctrl show.Controller) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		vars := mux.Vars(r)
+		id := vars["id"]
+		resp := router.Resp{}
+
+		shows, count, err := ctrl.GetMany()
+		if err != nil {
+			resp.Err = err.Error()
+			log.Entry.WithFields(logrus.Fields{"method": "Retrieve"}).Error(err)
+			router.Response(w, http.StatusUnprocessableEntity, resp)
+			return
+		}
+
+		resp.ID = id
+		resp.MSG = fmt.Sprintf("retrieved %d show(s)", count)
+		resp.Show = shows
 
 		log.Entry.WithFields(logrus.Fields{"method": "Retrieve", "id": id}).Info(resp.MSG)
 		router.Response(w, http.StatusOK, resp)
@@ -91,7 +115,7 @@ func Delete(ctrl show.Controller) http.HandlerFunc {
 		}
 
 		resp.ID = id
-		resp.MSG = fmt.Sprintf("deleted records: %v", count)
+		resp.MSG = fmt.Sprintf("deleted %v show(s)", count)
 
 		log.Entry.WithFields(logrus.Fields{"method": "Delete", "id": id, "removed": count}).Info(resp.MSG)
 		router.Response(w, http.StatusOK, resp)

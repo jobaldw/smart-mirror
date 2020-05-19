@@ -68,6 +68,30 @@ func Retrieve(ctrl movie.Controller) http.HandlerFunc {
 	}
 }
 
+//RetrieveAll movie
+func RetrieveAll(ctrl movie.Controller) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		vars := mux.Vars(r)
+		id := vars["id"]
+		resp := router.Resp{}
+
+		movies, count, err := ctrl.GetMany()
+		if err != nil {
+			resp.Err = err.Error()
+			log.Entry.WithFields(logrus.Fields{"method": "RetrieveAll"}).Error(err)
+			router.Response(w, http.StatusUnprocessableEntity, resp)
+			return
+		}
+
+		resp.ID = id
+		resp.MSG = fmt.Sprintf("retrieved %d movie(s)", count)
+		resp.Movie = movies
+
+		log.Entry.WithFields(logrus.Fields{"method": "Retrieve", "id": id}).Info(resp.MSG)
+		router.Response(w, http.StatusOK, resp)
+	}
+}
+
 //Delete movie
 func Delete(ctrl movie.Controller) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -91,7 +115,7 @@ func Delete(ctrl movie.Controller) http.HandlerFunc {
 		}
 
 		resp.ID = id
-		resp.MSG = fmt.Sprintf("deleted records: %v", count)
+		resp.MSG = fmt.Sprintf("deleted %d movie(s)", count)
 
 		log.Entry.WithFields(logrus.Fields{"method": "Delete", "removed": count}).Info(resp.MSG)
 		router.Response(w, http.StatusOK, resp)
