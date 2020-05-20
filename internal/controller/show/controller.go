@@ -2,11 +2,13 @@ package show
 
 import (
 	"context"
+	"net/url"
 	"time"
 
 	"what-to-watch/internal/controller"
 	"what-to-watch/internal/db/mgo"
 	"what-to-watch/internal/model"
+	"what-to-watch/pkg/query"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -57,11 +59,13 @@ func (c *Controller) Get(id string) (show model.Show, err error) {
 }
 
 //GetMany show
-func (c *Controller) GetMany() (shows []model.Show, count int, err error) {
+func (c *Controller) GetMany(params url.Values) (shows []model.Show, count int, err error) {
 	show := model.Show{}
-	ctx := context.TODO()
+	ctx := context.Background()
 
-	results, err := c.Datasource.FindMany(mgo.ShowKey)
+	filter := query.New(params)
+
+	results, err := c.Datasource.FindMany(filter, mgo.ShowKey)
 	if err != nil {
 		return shows, count, err
 	}

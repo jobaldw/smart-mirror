@@ -112,16 +112,16 @@ func (m *Mongo) FindOne(id primitive.ObjectID, key string) *mongo.SingleResult {
 }
 
 //FindMany record in mongo
-func (m *Mongo) FindMany(key string) (*mongo.Cursor, error) {
+func (m *Mongo) FindMany(filter []bson.M, key string) (*mongo.Cursor, error) {
 	log.Entry.WithFields(logrus.Fields{
 		"database":   m.Name,
 		"collection": m.Collections[key],
 		"method":     "FindMany"},
 	).Debug("finding...")
 
-	filter := bson.M{}
+	// filter := bson.M{}
 	collection := m.Database.Collection(m.Collections[key])
-	return collection.Find(context.Background(), filter, options.Find())
+	return collection.Aggregate(context.Background(), filter)
 }
 
 //Delete record in mongo

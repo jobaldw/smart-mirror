@@ -71,11 +71,14 @@ func Retrieve(ctrl show.Controller) http.HandlerFunc {
 //RetrieveAll show
 func RetrieveAll(ctrl show.Controller) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		vars := mux.Vars(r)
-		id := vars["id"]
 		resp := router.Resp{}
 
-		shows, count, err := ctrl.GetMany()
+		vars := mux.Vars(r)
+		id := vars["id"]
+
+		params := r.URL.Query()
+
+		shows, count, err := ctrl.GetMany(params)
 		if err != nil {
 			resp.Err = err.Error()
 			log.Entry.WithFields(logrus.Fields{"method": "Retrieve"}).Error(err)
@@ -83,8 +86,15 @@ func RetrieveAll(ctrl show.Controller) http.HandlerFunc {
 			return
 		}
 
+		if count == 0 {
+			resp.Err = "no match found"
+			log.Entry.WithFields(logrus.Fields{"method": "RetrieveAll"}).Error(resp.Err)
+			router.Response(w, http.StatusNotFound, resp)
+			return
+		}
+
 		resp.ID = id
-		resp.MSG = fmt.Sprintf("retrieved %d show(s)", count)
+		resp.MSG = fmt.Sprintf("retrieved %d shows", count)
 		resp.Show = shows
 
 		log.Entry.WithFields(logrus.Fields{"method": "Retrieve", "id": id}).Info(resp.MSG)

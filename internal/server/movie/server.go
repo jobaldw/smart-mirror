@@ -71,15 +71,24 @@ func Retrieve(ctrl movie.Controller) http.HandlerFunc {
 //RetrieveAll movie
 func RetrieveAll(ctrl movie.Controller) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		vars := mux.Vars(r)
-		id := vars["id"]
 		resp := router.Resp{}
+		vars := mux.Vars(r)
+		params := r.URL.Query()
 
-		movies, count, err := ctrl.GetMany()
+		id := vars["id"]
+
+		movies, count, err := ctrl.GetMany(params)
 		if err != nil {
 			resp.Err = err.Error()
 			log.Entry.WithFields(logrus.Fields{"method": "RetrieveAll"}).Error(err)
 			router.Response(w, http.StatusUnprocessableEntity, resp)
+			return
+		}
+
+		if count == 0 {
+			resp.Err = "no match found"
+			log.Entry.WithFields(logrus.Fields{"method": "RetrieveAll"}).Error(resp.Err)
+			router.Response(w, http.StatusNotFound, resp)
 			return
 		}
 

@@ -2,11 +2,13 @@ package movie
 
 import (
 	"context"
+	"net/url"
 	"time"
 
 	"what-to-watch/internal/controller"
 	"what-to-watch/internal/db/mgo"
 	"what-to-watch/internal/model"
+	"what-to-watch/pkg/query"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -57,11 +59,13 @@ func (c *Controller) Get(id string) (movie model.Movie, err error) {
 }
 
 //GetMany movie
-func (c *Controller) GetMany() (movies []model.Movie, count int, err error) {
+func (c *Controller) GetMany(params url.Values) (movies []model.Movie, count int, err error) {
 	movie := model.Movie{}
-	ctx := context.TODO()
+	ctx := context.Background()
 
-	results, err := c.Datasource.FindMany(mgo.MovieKey)
+	filter := query.New(params)
+
+	results, err := c.Datasource.FindMany(filter, mgo.MovieKey)
 	if err != nil {
 		return movies, count, err
 	}
