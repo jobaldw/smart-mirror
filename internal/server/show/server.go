@@ -54,7 +54,7 @@ func Retrieve(ctrl show.Controller) http.HandlerFunc {
 		show, err := ctrl.Get(id)
 		if err != nil {
 			resp.Err = err.Error()
-			log.Entry.WithFields(logrus.Fields{"method": "Retrieve"}).Error(err)
+			log.Entry.WithFields(logrus.Fields{"method": "Retrieve", "id": id}).Error(err)
 			router.Response(w, http.StatusUnprocessableEntity, resp)
 			return
 		}
@@ -81,14 +81,14 @@ func RetrieveAll(ctrl show.Controller) http.HandlerFunc {
 		shows, count, err := ctrl.GetMany(params)
 		if err != nil {
 			resp.Err = err.Error()
-			log.Entry.WithFields(logrus.Fields{"method": "Retrieve"}).Error(err)
+			log.Entry.WithFields(logrus.Fields{"method": "RetrieveAll", "id": id}).Error(err)
 			router.Response(w, http.StatusUnprocessableEntity, resp)
 			return
 		}
 
 		if count == 0 {
-			resp.Err = "no match found"
-			log.Entry.WithFields(logrus.Fields{"method": "RetrieveAll"}).Error(resp.Err)
+			resp.MSG = "no match found"
+			log.Entry.WithFields(logrus.Fields{"method": "RetrieveAll", "id": id}).Warn(resp.MSG)
 			router.Response(w, http.StatusNotFound, resp)
 			return
 		}
@@ -97,7 +97,46 @@ func RetrieveAll(ctrl show.Controller) http.HandlerFunc {
 		resp.MSG = fmt.Sprintf("retrieved %d shows", count)
 		resp.Show = shows
 
-		log.Entry.WithFields(logrus.Fields{"method": "Retrieve", "id": id}).Info(resp.MSG)
+		log.Entry.WithFields(logrus.Fields{"method": "RetrieveAll", "id": id}).Info(resp.MSG)
+		router.Response(w, http.StatusOK, resp)
+	}
+}
+
+//Update show
+func Update(ctrl show.Controller) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		vars := mux.Vars(r)
+		id := vars["id"]
+
+		show := model.Show{}
+		resp := router.Resp{}
+
+		if err := json.NewDecoder(r.Body).Decode(&show); err != nil {
+			resp.Err = err.Error()
+			log.Entry.WithFields(logrus.Fields{"method": "Update", "id": id, "title": show.Name}).Error(err)
+			router.Response(w, http.StatusBadRequest, resp)
+			return
+		}
+
+		updated, err := ctrl.Update(id, show)
+		if err != nil {
+			resp.Err = err.Error()
+			log.Entry.WithFields(logrus.Fields{"method": "Update", "id": id, "title": show.Name}).Error(err)
+			router.Response(w, http.StatusUnprocessableEntity, resp)
+			return
+		}
+
+		if updated == 0 {
+			resp.MSG = "no changes detected"
+			log.Entry.WithFields(logrus.Fields{"method": "Update", "id": id}).Warn(resp.MSG)
+			router.Response(w, http.StatusNoContent, resp)
+			return
+		}
+
+		resp.ID = id
+		resp.MSG = fmt.Sprintf("updated %d show(s)", updated)
+
+		log.Entry.WithFields(logrus.Fields{"method": "Update", "id": id, "title": show.Name}).Info(resp.MSG)
 		router.Response(w, http.StatusOK, resp)
 	}
 }
@@ -107,19 +146,20 @@ func Delete(ctrl show.Controller) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		vars := mux.Vars(r)
 		id := vars["id"]
+
 		resp := router.Resp{}
 
 		count, err := ctrl.Remove(id)
 		if err != nil {
 			resp.Err = err.Error()
-			log.Entry.WithFields(logrus.Fields{"method": "Delete"}).Error(err)
+			log.Entry.WithFields(logrus.Fields{"method": "Delete", "id": id}).Error(err)
 			router.Response(w, http.StatusUnprocessableEntity, resp)
 			return
 		}
 
 		if count == 0 {
-			resp.Err = "could not find show"
-			log.Entry.WithFields(logrus.Fields{"method": "Delete"}).Error(resp.Err)
+			resp.MSG = "could not find show"
+			log.Entry.WithFields(logrus.Fields{"method": "Delete", "id": id}).Warn(resp.MSG)
 			router.Response(w, http.StatusNotFound, resp)
 			return
 		}

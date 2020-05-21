@@ -54,7 +54,7 @@ func Retrieve(ctrl movie.Controller) http.HandlerFunc {
 		movie, err := ctrl.Get(id)
 		if err != nil {
 			resp.Err = err.Error()
-			log.Entry.WithFields(logrus.Fields{"method": "Retrieve"}).Error(err)
+			log.Entry.WithFields(logrus.Fields{"method": "Retrieve", "id": id}).Error(err)
 			router.Response(w, http.StatusUnprocessableEntity, resp)
 			return
 		}
@@ -80,15 +80,15 @@ func RetrieveAll(ctrl movie.Controller) http.HandlerFunc {
 		movies, count, err := ctrl.GetMany(params)
 		if err != nil {
 			resp.Err = err.Error()
-			log.Entry.WithFields(logrus.Fields{"method": "RetrieveAll"}).Error(err)
+			log.Entry.WithFields(logrus.Fields{"method": "RetrieveAll", "id": id}).Error(err)
 			router.Response(w, http.StatusUnprocessableEntity, resp)
 			return
 		}
 
 		if count == 0 {
-			resp.Err = "no match found"
-			log.Entry.WithFields(logrus.Fields{"method": "RetrieveAll"}).Error(resp.Err)
-			router.Response(w, http.StatusNotFound, resp)
+			resp.MSG = "no match found"
+			log.Entry.WithFields(logrus.Fields{"method": "RetrieveAll", "id": id}).Warn(resp.MSG)
+			router.Response(w, http.StatusNoContent, resp)
 			return
 		}
 
@@ -96,7 +96,46 @@ func RetrieveAll(ctrl movie.Controller) http.HandlerFunc {
 		resp.MSG = fmt.Sprintf("retrieved %d movie(s)", count)
 		resp.Movie = movies
 
-		log.Entry.WithFields(logrus.Fields{"method": "Retrieve", "id": id}).Info(resp.MSG)
+		log.Entry.WithFields(logrus.Fields{"method": "RetrieveAll", "id": id}).Info(resp.MSG)
+		router.Response(w, http.StatusOK, resp)
+	}
+}
+
+//Update movie
+func Update(ctrl movie.Controller) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		vars := mux.Vars(r)
+		id := vars["id"]
+
+		movie := model.Movie{}
+		resp := router.Resp{}
+
+		if err := json.NewDecoder(r.Body).Decode(&movie); err != nil {
+			resp.Err = err.Error()
+			log.Entry.WithFields(logrus.Fields{"method": "Update", "id": id, "title": movie.Name}).Error(err)
+			router.Response(w, http.StatusBadRequest, resp)
+			return
+		}
+
+		updated, err := ctrl.Update(id, movie)
+		if err != nil {
+			resp.Err = err.Error()
+			log.Entry.WithFields(logrus.Fields{"method": "Update", "id": id, "title": movie.Name}).Error(err)
+			router.Response(w, http.StatusUnprocessableEntity, resp)
+			return
+		}
+
+		if updated == 0 {
+			resp.MSG = "no changes detected"
+			log.Entry.WithFields(logrus.Fields{"method": "Update", "id": id, "title": movie.Name}).Warn(resp.MSG)
+			router.Response(w, http.StatusNoContent, resp)
+			return
+		}
+
+		resp.ID = id
+		resp.MSG = fmt.Sprintf("updated %d movie(s)", updated)
+
+		log.Entry.WithFields(logrus.Fields{"method": "Update", "id": id, "title": movie.Name}).Info(resp.MSG)
 		router.Response(w, http.StatusOK, resp)
 	}
 }
@@ -111,22 +150,22 @@ func Delete(ctrl movie.Controller) http.HandlerFunc {
 		count, err := ctrl.Remove(id)
 		if err != nil {
 			resp.Err = err.Error()
-			log.Entry.WithFields(logrus.Fields{"method": "Delete"}).Error(err)
+			log.Entry.WithFields(logrus.Fields{"method": "Delete", "id": id}).Error(err)
 			router.Response(w, http.StatusUnprocessableEntity, resp)
 			return
 		}
 
 		if count == 0 {
-			resp.Err = "could not find movie"
-			log.Entry.WithFields(logrus.Fields{"method": "Delete"}).Error(resp.Err)
-			router.Response(w, http.StatusNotFound, resp)
+			resp.MSG = "could not find movie"
+			log.Entry.WithFields(logrus.Fields{"method": "Delete", "id": id}).Warn(resp.MSG)
+			router.Response(w, http.StatusNoContent, resp)
 			return
 		}
 
 		resp.ID = id
 		resp.MSG = fmt.Sprintf("deleted %d movie(s)", count)
 
-		log.Entry.WithFields(logrus.Fields{"method": "Delete", "removed": count}).Info(resp.MSG)
+		log.Entry.WithFields(logrus.Fields{"method": "Delete", "id": id, "removed": count}).Info(resp.MSG)
 		router.Response(w, http.StatusOK, resp)
 	}
 }

@@ -29,11 +29,13 @@ func Start(conf config.Config, ctrl controller.Controller) {
 	routes.HandleFunc("/movie", movie.Create(mCtrl)).Methods(http.MethodPost)
 	routes.HandleFunc("/movie/{id}", movie.Retrieve(mCtrl)).Methods(http.MethodGet)
 	routes.HandleFunc("/movie", movie.RetrieveAll(mCtrl)).Methods(http.MethodGet)
+	routes.HandleFunc("/movie/{id}", movie.Update(mCtrl)).Methods(http.MethodPut)
 	routes.HandleFunc("/movie/{id}", movie.Delete(mCtrl)).Methods(http.MethodDelete)
 
 	routes.HandleFunc("/show", show.Create(sCtrl)).Methods(http.MethodPost)
 	routes.HandleFunc("/show/{id}", show.Retrieve(sCtrl)).Methods(http.MethodGet)
 	routes.HandleFunc("/show", show.RetrieveAll(sCtrl)).Methods(http.MethodGet)
+	routes.HandleFunc("/show/{id}", show.Update(sCtrl)).Methods(http.MethodPut)
 	routes.HandleFunc("/show/{id}", show.Delete(sCtrl)).Methods(http.MethodDelete)
 
 	log.Entry.WithFields(logrus.Fields{"method": "Start", "port": conf.Port}).Info("API is up and running...")

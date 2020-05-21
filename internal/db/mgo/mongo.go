@@ -119,9 +119,21 @@ func (m *Mongo) FindMany(filter []bson.M, key string) (*mongo.Cursor, error) {
 		"method":     "FindMany"},
 	).Debug("finding...")
 
-	// filter := bson.M{}
 	collection := m.Database.Collection(m.Collections[key])
 	return collection.Aggregate(context.Background(), filter)
+}
+
+//Update record in mongo
+func (m *Mongo) Update(id primitive.ObjectID, doc interface{}, key string) (*mongo.UpdateResult, error) {
+	log.Entry.WithFields(logrus.Fields{
+		"database":   m.Name,
+		"collection": m.Collections[key],
+		"method":     "Update"},
+	).Debug("finding...")
+
+	filter := bson.M{"_id": id}
+	collection := m.Database.Collection(m.Collections[key])
+	return collection.UpdateOne(context.Background(), filter, bson.M{"$set": doc})
 }
 
 //Delete record in mongo

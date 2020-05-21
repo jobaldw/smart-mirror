@@ -87,6 +87,21 @@ func (c *Controller) GetMany(params url.Values) (movies []model.Movie, count int
 	return movies, count, err
 }
 
+//Update movie
+func (c *Controller) Update(id string, movie model.Movie) (int64, error) {
+	hex, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return 0, err
+	}
+
+	result, err := c.Datasource.Update(hex, movie, mgo.MovieKey)
+	if err != nil {
+		return 0, err
+	}
+
+	return result.ModifiedCount, err
+}
+
 //Remove movie
 func (c *Controller) Remove(id string) (int, error) {
 	hex, err := primitive.ObjectIDFromHex(id)
