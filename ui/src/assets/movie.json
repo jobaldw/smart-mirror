@@ -1,0 +1,21 @@
+{
+    "id": "5ec5970d2c4d4eaabbbd399b",
+    "msg": "retrieved movie",
+    "movie": {
+        "_id": "5ec5970d2c4d4eaabbbd399b",
+        "name": "Avengers: Age of Ultron",
+        "genres": [
+            "Sci-Fi",
+            "Adventure",
+            "Action"
+        ],
+        "platforms": [
+            "Disney",
+            "Plex"
+        ],
+        "runtime": "2h 20",
+        "created": "2020-05-20T20:46:05.499Z",
+        "updated": "2020-05-20T20:46:05.499Z",
+        "franchise": "Avengers Trilogy"
+    }
+}

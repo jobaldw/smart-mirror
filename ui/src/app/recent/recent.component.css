@@ -1,0 +1,97 @@
+.vertical-center {
+    margin: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.horizational-center {
+    margin: 0, auto;
+}
+
+div.recent {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    
+    margin: auto;
+    left: 0;
+}
+
+div.title-container {
+    position: relative;
+    width: 100%;
+    height: 25px;
+
+    border: black, solid, 1pt;
+}
+
+div.title-container > p{
+    position: relative;
+    width: 100%;
+    height: 25px;
+    
+    border: black, solid, 1pt;
+}
+
+div.row-container {
+    position: relative;
+    width: 100%;
+    height: 250px;
+}
+
+div.movie-container {
+    position: relative;
+    width: 150px;
+    height: 100%;
+    
+    margin-left: 25px;
+    float: left;
+}
+
+div.poster {
+    position: absolute;
+    width: 100%;
+    height: 75%;
+    top: 0;
+    left: 0;
+}
+
+div.poster > img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+div.description {
+    position: absolute;
+    width: 100%;
+    height: 25%;
+    bottom: 0;
+    left: 0;
+}
+
+div.description > p {
+    position: absolute;
+    margin-top: 0;
+    left: 2px;
+
+    color: whitesmoke;
+}
+
+.doucment, p.title {
+    font-size: 14pt;
+}
+
+.doucment, p.genre {
+    top: 23px;
+    font-size: 10pt;
+    font-style: italic;
+    color: grey;
+}
+
+.doucment, p.runtime {
+    top: 39px;
+    position: a;
+    font-size: 10pt;
+    color: grey;
+}
