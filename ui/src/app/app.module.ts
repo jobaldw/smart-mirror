@@ -13,25 +13,25 @@ import { RecentlyWatchedComponent } from './entainment/recently-watched/recently
 import { RecentlyAddedComponent } from './entainment/recently-added/recently-added.component';
 
 // home components
-import { WelomeComponent } from './home/welome/welome.component';
 import { NotificationsComponent } from './home/notifications/notifications.component';
 import { CalendarComponent } from './home/calendar/calendar.component';
 import { ClockComponent } from './home/clock/clock.component';
 import { WeatherComponent } from './home/weather/weather.component';
 import { GoogleHubComponent } from './home/google-hub/google-hub.component';
+import { WelcomeComponent } from './home/welcome/welcome.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecentlyWatchedComponent,
     RecentlyAddedComponent,
-    WelomeComponent,
     NotificationsComponent,
     CalendarComponent,
     ClockComponent,
     WeatherComponent,
     GoogleHubComponent,
     NavigationBarComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,

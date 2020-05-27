@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WelomeComponent } from './welome.component';
+import { WelcomeComponent } from './welcome.component';
 
-describe('WelomeComponent', () => {
-  let component: WelomeComponent;
-  let fixture: ComponentFixture<WelomeComponent>;
+describe('WelcomeComponent', () => {
+  let component: WelcomeComponent;
+  let fixture: ComponentFixture<WelcomeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WelomeComponent ]
+      declarations: [ WelcomeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WelomeComponent);
+    fixture = TestBed.createComponent(WelcomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
