@@ -19,6 +19,9 @@ import { ClockComponent } from './home/clock/clock.component';
 import { WeatherComponent } from './home/weather/weather.component';
 import { GoogleHubComponent } from './home/google-hub/google-hub.component';
 import { WelcomeComponent } from './home/welcome/welcome.component';
+import { CurrentComponent } from './home/weather/current/current.component';
+import { ForcastComponent } from './home/weather/forcast/forcast.component';
+import { UvComponent } from './home/weather/uv/uv.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import { WelcomeComponent } from './home/welcome/welcome.component';
     GoogleHubComponent,
     NavigationBarComponent,
     WelcomeComponent,
+    CurrentComponent,
+    ForcastComponent,
+    UvComponent,
   ],
   imports: [
     BrowserModule,
