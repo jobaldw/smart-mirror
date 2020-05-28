@@ -44,7 +44,7 @@ li a:hover {
     font-size: 60px;
 
     opacity: 75%;
-    transition: 0.3s;
+    transition: 0.5s;
 }
 
 a#home:hover  {
