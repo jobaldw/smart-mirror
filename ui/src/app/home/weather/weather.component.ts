@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { faCloudRain, faTemperatureLow, faTemperatureHigh, faWater } from '@fortawesome/free-solid-svg-icons'
+import { faCloud, faSnowflake, faSun, faCloudRain, faTemperatureLow, faTemperatureHigh, faWater } from '@fortawesome/free-solid-svg-icons'
 
 import { WeatherService } from '../../services/weather.service'
 
@@ -11,10 +11,15 @@ import { WeatherService } from '../../services/weather.service'
 })
 export class WeatherComponent {
 
-  faCloudRain = faCloudRain;
   faTemperatureLow = faTemperatureLow;
   faTemperatureHigh = faTemperatureHigh;
-  test = faWater
+  faWater = faWater
+  
+  faSun = faSun;
+  faCloud = faCloud;
+  faCloudRain = faCloudRain;
+  faSnowflake = faSnowflake;
+  
 
   temperature;
 
