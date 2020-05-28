@@ -1,13 +1,7 @@
 /* Clock Panel styling */
 .panel {
-    position: absolute;
-
     top: 0;
     right: 0;
-    height: 25%;
-    width: 25%;
-
-    margin: 25px;
 }
 
 .clock {
@@ -35,6 +29,7 @@ div#date {
 
     margin: auto;
 
+    font-family: 'Work Sans', sans-serif;
     font-size: 22px;
     font-weight: 300;
     text-align: center;

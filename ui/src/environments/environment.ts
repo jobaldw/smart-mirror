@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiKey: '7c8174fd732efc1fbdbf1eef9905883a',
+  apiKey: '7c8174fd732efc1fbdbf1eef9905883a', // https://home.openweathermap.org/api_keys
   apiUrl: 'http://api.openweathermap.org/data/2.5'
 };
 
@@ -15,4 +15,4 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+import 'zone.js/dist/zone-error';  // Included with Angular CLI.

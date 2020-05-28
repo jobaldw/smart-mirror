@@ -1,13 +1,7 @@
 /* Weather Panel styling */
 .panel {
-    position: absolute;
-
     top: 250px;
     right: 0;
-    height: 25%;
-    width: 25%;
-
-    margin: 25px;
 }
 
 .weather {

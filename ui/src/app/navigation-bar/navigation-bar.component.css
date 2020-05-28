@@ -1,7 +1,6 @@
 /* Navigation Bar styling */
 .panel {
-    position: absolute;
-    bottom: 15px;
+    bottom: 0;
     width: 100%;
 }
 
