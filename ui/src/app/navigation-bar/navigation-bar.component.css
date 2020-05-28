@@ -1,53 +1,102 @@
 /* Navigation Bar styling */
 .panel {
+    position: fixed;
+
     bottom: 0;
+    left: 0;
+    height: 10%;
     width: 100%;
+
+    margin: 0;
+    padding: 0;
 }
 
 .navigation {
-    margin: auto;
-    width: 50%;
+    position: absolute;
+
+    bottom: 0;
+    height: 90%;
+    width: 100%;
+
     color: white;
     text-align: center;
 }
 
 ul {
-    list-style: none;
-    margin: 0;
+    height: 100%;
+    width: 50%;
+
+    margin: auto;
     padding: 0;
+
+    list-style: none;
 }
 
 li {
     display: inline;
 }
 
+/* Off hover styling */
 li a {
-    color: white;
-    text-align: center;
-    padding: 10px 10px;
+    position: absolute;
+
+    bottom: 0;
+    height: 70%;
+    width: 3%;
+
     margin: 3px;;
+    padding: 10px 10px;
+
+    color: white;
     font-size: 40px;
+    text-align: center;
     text-decoration: none;
 
-    border-radius: 10px 10px 10px 10px;
-    border: 0.5px solid #ffffff;
-
     opacity: 25%;
+    transition: 1s;
+}
+
+li a#home {
+    left: 30%;
+}
+
+li a#entertainment {
+    left: 35%;
+}
+
+li a#music {
+    left: 40%;
+}
+
+li a#news {
+    left: 45%;
+}
+
+li a#calendar {
+    left: 50%;
+}
+
+li a#notifcations {
+    left: 55%;
+}
+
+li a#settings {
+    left: 60%;
 }
 
 /* On hover styling */
 li a:hover {
-    position: relative;
-    bottom: 8px;
+    bottom: 20%;
 
-    font-size: 60px;
+    font-size: 64px;
 
     opacity: 75%;
-    transition: 0.5s;
+    transition: bottom 0.5s;
+    transition: opacity 0.5s;
 }
 
 a#home:hover  {
-     color: gray;
+    color: gray;
 }
 
 a#entertainment:hover  {
@@ -63,8 +112,7 @@ a#news:hover  {
 }
 
 a#calendar:hover  {
-    color: #0F9D58
-    ;
+    color: #0F9D58;
 }
 
 a#notifcations:hover  {
