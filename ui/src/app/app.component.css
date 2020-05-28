@@ -1,9 +1,7 @@
 body {
-    /* height: 100%;
-    width: 100%; */
+    position: absolute;
     height: 900px;
-    width: 2000px;
+    width: 1900px;
     margin: 0;
     padding: 0;
-    background: linear-gradient(180deg, rgba(48,56,108,1) 0%, rgba(14,17,31,1) 41%, rgba(40,54,138,1) 100%);
 }
