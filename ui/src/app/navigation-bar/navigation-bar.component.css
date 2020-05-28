@@ -1,7 +1,7 @@
 /* Navigation Bar styling */
 .panel {
     position: absolute;
-    bottom: 0;
+    bottom: 15px;
     width: 100%;
 }
 
@@ -20,22 +20,31 @@ ul {
 
 li {
     display: inline;
-  }
+}
 
 li a {
     color: white;
     text-align: center;
+    padding: 10px 10px;
+    margin: 3px;;
     font-size: 40px;
-    padding: 14px 16px;
-    opacity: 25%;
     text-decoration: none;
+
+    border-radius: 10px 10px 10px 10px;
+    border: 0.5px solid #ffffff;
+
+    opacity: 25%;
 }
 
 /* On hover styling */
 li a:hover {
     position: relative;
     bottom: 8px;
+
+    font-size: 60px;
+
     opacity: 75%;
+    transition: 0.3s;
 }
 
 a#home:hover  {

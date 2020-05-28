@@ -13,8 +13,6 @@
     padding: 15px;
     margin: 0;
 
-/* background-color: green; */
-
     color: white;
     font-family: Tahoma, Verdana, Segoe, sans-serif;
 }
@@ -24,10 +22,8 @@ div#date {
     margin: auto;
     width: 100%;
     height: 100%;
-    top: 145px;
+    top: 140px;
     right: -20px;
-
-    /* background-color: blue; */
 
     font-size: 22px;
     font-weight: 300;
@@ -40,11 +36,9 @@ div#time {
     margin: auto;
     width: 100%;
     height: 70%;
-    top: -45px;
+    top: -85px;
 
-/* background-color: red; */
-
-    font-size: 108px;
+    font-size: 120px;
     font-weight: 100;
     text-align: center;
 }
