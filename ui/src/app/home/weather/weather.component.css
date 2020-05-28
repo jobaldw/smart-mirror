@@ -20,62 +20,131 @@
     opacity: 80%;
 }
 
-div#greeting {
+/* Current weather styling */
+div#currently {
     position: absolute;
 
     top: 0;
-    height: 20%;
+    height: 60%;
     width: 100%;
-
-    font-size: 36px;
-    font-weight: 200;
-    text-align: left;
 }
 
-div#greeting > div {
-    position: relative;
+div#currently > div {
+    position: absolute;
+}
 
+div#temperature {
     top: 0;
     height: 100%;
-    width: 100%;
-    z-index: 1;
+    width: 50%;
+
+    font-size: 108px;
+    text-align: center;
 }
 
-div#user {
-    position: relative;
-
-    top: 15%;
-    height: 40%;
-    width: 100%;
-
-    font-size: 80px;
-    font-weight: 700;
-}
-
-div#user > div {
-    position: relative;
-
-    bottom: 0;
-    height: 100%;
-    width: 100%;
-}
-
-div#quote {
-    position: absolute;
-
-    bottom: 0;
+div#forecast {
+    top: 0;
+    right: 0;
     height: 25%;
-    width: 100%;
+    width: 50%;
 
-    font-size: 18px;
+    font-size: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+div#description {
+    top: 25%;
+    right: 0;
+    height: 50%;
+    width: 50%;
+
+    font-size: 20px;
     font-weight: 100;
     font-style: italic;
 }
 
-div#quote > div {
-    position: relative;
+/* Extra current weather styling */
+div#extras {
+    bottom: 0;
+    right: 0;
+    
+    height: 25%;
+    width: 100%;
+
+    font-size: 18px;
+    font-weight: 500px;
+    z-index: 1;
+}
+
+div#high {
+    position: absolute;
+
+    right: 240px;
+
+    color: #DB4437;
+}
+
+div#low {
+    position: absolute;
+
+    right: 160px;
+
+    color: #4285F4;
+}
+
+div#humidity {
+    position: absolute;
+
+    right: 80px;
+
+    color: #ffffff;
+}
+
+div#rain {
+    position: absolute;
+
+    right: 0;
+
+    color: gray;
+}
+
+div#rain:after {
+    content: '\0025';
+}
+
+/* 3 day glance weather styling */
+div#glance {
+    position: absolute;
 
     bottom: 0;
-    height: 100%;
+    height: 40%;
     width: 100%;
+
+    font-size: 20px;
+    font-weight: 100;
+    font-style: italic;
+
+    border-top: 1pt, solid, white;
+}
+
+div#border {
+    position: absolute;
+
+    height: 1%;
+    width: 100%;
+
+    background-color: white;
+}
+
+div.day {
+    position: relative;
+
+    height: 90%;
+    width: 23%;
+
+    margin: 3px;;
+    float: left;
+
+    background-color: tomato;
 }
