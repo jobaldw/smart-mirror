@@ -3,12 +3,23 @@ import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { WeatherService } from '../../../services/weather.service';
 
+import { faCloud, faSnowflake, faSun, faCloudRain, faTemperatureLow, faTemperatureHigh, faWater } from '@fortawesome/free-solid-svg-icons'
+
 @Component({
   selector: 'app-current',
   templateUrl: './current.component.html',
   styleUrls: ['./current.component.css']
 })
 export class CurrentComponent implements OnInit {
+
+  faTemperatureLow = faTemperatureLow;
+  faTemperatureHigh = faTemperatureHigh;
+  faWater = faWater
+  
+  faSun = faSun;
+  faCloud = faCloud;
+  faCloudRain = faCloudRain;
+  faSnowflake = faSnowflake;
 
   loc$: Observable<string>;
   loc: string;
@@ -37,7 +48,6 @@ export class CurrentComponent implements OnInit {
         this.currentWeather = res;
       }, err => {
         if (err.error && err.error.message) {
-          alert(err.error.message);
           this.msg = err.error.message;
           return;
         }

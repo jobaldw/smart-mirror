@@ -1,80 +1,15 @@
-<h1 class="center" *ngIf='resultFound()'>Current weather for {{currentWeather.name}}</h1>
-<table *ngIf='resultFound()'>
-  <tbody>
-    <tr>
-      <td>
-        <h3>Current Temperature:</h3>
-      </td>
-      <td>
-        <h3>{{currentWeather.main?.temp - 273.15 | number:'1.0-0'}}<sup>o</sup>C</h3>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h3>Maximum Temperature:</h3>
-      </td>
-      <td>
-        <h3>{{currentWeather.main?.temp - 273.15 | number:'1.0-0'}}<sup>o</sup>C</h3>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h3>Minimum Temperature:</h3>
-      </td>
-      <td>
-        <h3>{{currentWeather.main?.temp_min - 273.15 | number:'1.0-0'}}<sup>o</sup>C</h3>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h3>Clouds:</h3>
-      </td>
-      <td>
-        <h3>{{currentWeather.clouds?.all}}%</h3>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h3>Humidity</h3>
-      </td>
-      <td>
-        <h3>{{currentWeather.main?.humidity}}%</h3>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h3>Pressure</h3>
-      </td>
-      <td>
-        <h3>{{currentWeather.main?.pressure}}mb</h3>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h3>Sunrise</h3>
-      </td>
-      <td>
-        <h3>{{currentWeather.sys?.sunrise*1000 | date:'long'}}</h3>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h3>Sunset</h3>
-      </td>
-      <td>
-        <h3>{{currentWeather.sys?.sunset*1000 | date:'long'}}</h3>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h3>Visibility</h3>
-      </td>
-      <td>
-        <h3>{{currentWeather.visibility}}m</h3>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<div *ngIf='!resultFound()'>
-  <h1 class="center">{{msg || 'Failed to get weather.'}}</h1>
+<div id="unavailable" *ngIf='!resultFound()'>
+  city data unavailable: <br> {{msg}}
+</div>
+
+<div id="currently" *ngIf='resultFound()'>
+  <div id="extras">
+      <div title="high" id="high"><fa-icon [icon]="faTemperatureHigh"></fa-icon>   {{(currentWeather.main?.temp_max - 273.15) * 9/5 + 32 | number:'1.0-0'}}</div>
+      <div title="low" id="low"><fa-icon [icon]="faTemperatureLow"></fa-icon>   {{(currentWeather.main?.temp_min - 273.15) * 9/5 + 32 | number:'1.0-0'}}</div>
+      <div title="humidity" id="humidity"><fa-icon [icon]="faWater"></fa-icon>   {{currentWeather.main?.humidity}}</div>
+      <div title="chance of rain" id="rain"><fa-icon [icon]="faCloudRain"></fa-icon>   10</div>
+  </div>
+  <div title="today's temperature" id="temperature">{{(currentWeather.main?.temp - 273.15) * 9/5 + 32  | number:'1.0-0'}}&#730;</div>
+  <div title="today's forecast" id="forecast">{{currentWeather.weather[0]?.main}}</div>
+  <div title="today's description" id="description">{{currentWeather.weather[0]?.description}}</div>
 </div>
