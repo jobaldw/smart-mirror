@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { WeatherService } from '../../../services/weather.service';
 
-import { faCloud, faSnowflake, faSun, faCloudRain, faTemperatureLow, faTemperatureHigh, faWater } from '@fortawesome/free-solid-svg-icons'
+import { faCloudRain, faTemperatureLow, faTemperatureHigh, faWater } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-current',
@@ -15,11 +15,7 @@ export class CurrentComponent implements OnInit {
   faTemperatureLow = faTemperatureLow;
   faTemperatureHigh = faTemperatureHigh;
   faWater = faWater
-  
-  faSun = faSun;
-  faCloud = faCloud;
   faCloudRain = faCloudRain;
-  faSnowflake = faSnowflake;
 
   loc$: Observable<string>;
   loc: string;
@@ -51,7 +47,7 @@ export class CurrentComponent implements OnInit {
           this.msg = err.error.message;
           return;
         }
-        alert('Failed to get weather.');
+        alert('Failed to get current weather.');
       }, () => {
 
       })

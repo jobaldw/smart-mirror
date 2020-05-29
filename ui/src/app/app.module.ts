@@ -33,6 +33,7 @@ import { GoogleHubComponent } from './home/google-hub/google-hub.component';
 import { NotificationsComponent } from './home/notifications/notifications.component';
 import { CurrentComponent } from './home/weather/current/current.component';
 import { SearchComponent } from './home/weather/current/search/search.component';
+import { ForecastComponent } from './home/weather/forecast/forecast.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { SearchComponent } from './home/weather/current/search/search.component'
     WelcomeComponent,
     CurrentComponent,
     SearchComponent,
+    ForecastComponent,
   ],
   imports: [
     BrowserModule,

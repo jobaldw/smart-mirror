@@ -24,17 +24,11 @@ export class WeatherComponent implements OnInit{
   faSnowflake = faSnowflake;
   
 
-  high;
-  low;
-
   constructor(private store: Store<any>) {
     this.loc$ = store.pipe(select('loc'));
     this.loc$.subscribe(loc => {
       this.loc = loc;
     })
-
-    this.high = 81;
-    this.low = 68;
    }
 
   ngOnInit() {

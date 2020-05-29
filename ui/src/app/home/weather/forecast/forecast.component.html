@@ -1,0 +1,35 @@
+<div id="glance">
+    <div id="border"></div>
+    <div class="dayPane">
+        <div class="day">{{forecast.list[0].dt | date:'EEE'}}</div>
+        <div class="outlook">
+            <fa-icon [icon]="faSun"></fa-icon>
+        </div>
+        <div class="highs">{{forecast.list[0].main?.temp_max}}</div>
+        <div class="lows">{{forecast.list[0].main?.temp_min}}</div>
+    </div>
+    <div class="dayPane">
+        <div class="day">{{forecast.list[1].dt | date:'EEE'}}</div>
+        <div class="outlook">
+            <fa-icon [icon]="faSun"></fa-icon>
+        </div>
+        <div class="highs">{{forecast.list[1].main?.temp_max}}</div>
+        <div class="lows">{{forecast.list[1].main?.temp_min}}</div>
+    </div>
+    <div class="dayPane">
+        <div class="day">{{forecast.list[2].dt | date:'EEE'}}</div>
+        <div class="outlook">
+            <fa-icon [icon]="faSun"></fa-icon>
+        </div>
+        <div class="highs">{{forecast.list[2].main?.temp_max}}</div>
+        <div class="lows">{{forecast.list[2].main?.temp_min}}</div>
+    </div>
+    <div class="dayPane">
+        <div class="day">{{forecast.list[3].dt | date:'EEE'}}</div>
+        <div class="outlook">
+            <fa-icon [icon]="faSun"></fa-icon>
+        </div>
+        <div class="highs">{{forecast.list[3].main?.temp_max}}</div>
+        <div class="lows">{{forecast.list[3].main?.temp_min}}</div>
+    </div>
+</div>

@@ -2,40 +2,6 @@
     <div class="weather">
         <app-search></app-search>
         <app-current></app-current>
-        <div id="glance">
-            <div id="border"></div>
-            <div class="dayPane">
-                <div class="day">TUE</div>
-                <div class="outlook">
-                    <fa-icon [icon]="faSun"></fa-icon>
-                </div>
-                <div class="highs">{{high}}</div>
-                <div class="lows">{{low}}</div>
-            </div>
-            <div class="dayPane">
-                <div class="day">Wed</div>
-                <div class="outlook">
-                    <fa-icon [icon]="faCloudRain"></fa-icon>
-                </div>
-                <div class="highs">{{high}}</div>
-                <div class="lows">{{low}}</div>
-            </div>
-            <div class="dayPane">
-                <div class="day">THU</div>
-                <div class="outlook">
-                    <fa-icon [icon]="faSnowflake"></fa-icon>
-                </div>
-                <div class="highs">{{high}}</div>
-                <div class="lows">{{low}}</div>
-            </div>
-            <div class="dayPane">
-                <div class="day">FRI</div>
-                <div class="outlook">
-                    <fa-icon [icon]="faCloud"></fa-icon>
-                </div>
-                <div class="highs">{{high}}</div>
-                <div class="lows">{{low}}</div>
-            </div>
-        </div>
+        <app-forecast></app-forecast>
     </div>
 </div>
