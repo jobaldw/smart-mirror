@@ -1,0 +1,87 @@
+/* Search Panel styling */
+.search {
+    position: absolute;
+
+    top: 0;
+    height: 10%;
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    opacity: 80%;
+}
+
+form {
+    position: absolute;
+
+    height: 100%;
+    width: 100%;
+    
+    display: inline-block;
+
+    text-align: center;
+}
+
+div#border {
+    position: absolute;
+
+    bottom: 0;
+    height: 1%;
+    width: 50%;
+
+    margin-left:  31%;
+
+    background-color: #ffffff;
+}
+
+input {
+    position: absolute;
+
+    top: -25%;
+    left: 30%;
+    width: 50%;
+
+    padding: 5px;
+
+    color: #ffffff;
+    font-size: 24px;
+    text-align: center;
+
+    background:none;
+    border: none;
+
+    opacity: 100%;
+}
+
+input:focus {
+    outline: none;
+    background: none;
+    border: none;
+}
+
+label {
+    position: absolute;
+
+    top: -25%;
+    left: -1%;
+    width: 50%;
+
+    padding: 5px;
+
+    font-size: 26px;
+    font-weight: 300;
+}
+
+span#noLo {
+    position: absolute;
+
+    top: -50%;
+    left: 39%;
+    width: 35%;
+
+    font-size: 20px;
+    font-weight: 100;
+
+    z-index: -1;
+}

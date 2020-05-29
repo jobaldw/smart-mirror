@@ -1,15 +1,18 @@
-import { Component} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
 import { faCloud, faSnowflake, faSun, faCloudRain, faTemperatureLow, faTemperatureHigh, faWater } from '@fortawesome/free-solid-svg-icons'
-
-import { WeatherService } from '../../services/weather.service'
-
 
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.component.html',
   styleUrls: ['./weather.component.css']
 })
-export class WeatherComponent {
+export class WeatherComponent implements OnInit{
+
+  loc$: Observable<string>;
+  loc: string;
 
   faTemperatureLow = faTemperatureLow;
   faTemperatureHigh = faTemperatureHigh;
@@ -33,7 +36,12 @@ export class WeatherComponent {
   icon;
   description;
 
-  constructor() {
+  constructor(private store: Store<any>) {
+    this.loc$ = store.pipe(select('loc'));
+    this.loc$.subscribe(loc => {
+      this.loc = loc;
+    })
+
     this.temperature = 77;
 
     this.feelsLike = 79;
@@ -50,4 +58,7 @@ export class WeatherComponent {
   //   this.currently = weatherService.getCurrentWeather();
   //   this.forecast = weatherService.getForecast()
   //  }
+
+  ngOnInit() {
+  }
 }

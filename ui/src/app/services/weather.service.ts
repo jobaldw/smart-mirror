@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
 import { environment } from 'src/environments/environment';
 
 const apiKey: string = environment.apiKey;
@@ -10,10 +9,11 @@ const apiKey: string = environment.apiKey;
 export class WeatherService {
   constructor(private http: HttpClient) { }
 
-  getCurrentWeather() {
-    return this.http.get(`${environment.apiUrl}/weather?q=Saint Louis,usa&appid=${apiKey}`)
+  getCurrentWeather(loc: string) {
+    return this.http.get(`${environment.apiUrl}/weather?q=${loc}&appid=${apiKey}`)
   }
-  getForecast() {
-    return this.http.get(`${environment.apiUrl}/forecast?q=Saint Louis,usa&appid=${apiKey}`)
+
+  getForecast(loc: string) {
+    return this.http.get(`${environment.apiUrl}/forecast?q=${loc}&appid=${apiKey}`)
   }
 }

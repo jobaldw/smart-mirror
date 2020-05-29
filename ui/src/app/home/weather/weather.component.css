@@ -2,6 +2,8 @@
 .panel {
     top: 250px;
     right: 0;
+
+    height: 30%;
 }
 
 .weather {
@@ -24,8 +26,8 @@
 div#currently {
     position: absolute;
 
-    top: 0;
-    height: 60%;
+    top: 12%;
+    height: 50%;
     width: 100%;
 }
 
@@ -113,7 +115,7 @@ div#rain:after {
     content: '\0025';
 }
 
-/* 3 day glance weather styling */
+/* 4 day glance weather styling */
 div#glance {
     position: absolute;
 
@@ -160,18 +162,17 @@ div.day {
 }
 
 div.outlook {
-    top: 25%;
+    top: 35%;
     left: 0;
     height: 100%;
     width: 70%;
 }
 
 div.outlook > fa-icon {
-    top: 10%;
     width: 100%;
     
     display: inline-block;
-    font-size: 56px;
+    font-size: 48px;
     text-align: center;
 }
 
@@ -195,4 +196,13 @@ div.lows {
     color: #4285F4;
     font-size: 24px;
     text-align: center;
+}
+
+#container{
+    margin: 10px;
+}
+
+#search{
+    text-align: center;
+    font-size: 40px;
 }

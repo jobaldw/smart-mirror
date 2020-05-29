@@ -1,5 +1,19 @@
+<div id='container'>
+    <div *ngIf='!loc' id='search'>
+        <h1>Enter location to find weather info.</h1>
+    </div>
+    <div *ngIf='loc'>
+        <div label="Current Weather">
+            <app-current></app-current>
+        </div>
+        <!-- <div label="Forecast">
+            <app-forecast></app-forecast>
+        </div> -->
+    </div>
+</div>
 <div class="panel">
     <div class="weather">
+        <app-search></app-search>
         <div id="currently">
             <div id="extras">
                 <div title="high" id="high"><fa-icon [icon]="faTemperatureLow"></fa-icon>     {{high}}</div>
