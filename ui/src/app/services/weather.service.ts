@@ -10,10 +10,10 @@ export class WeatherService {
   constructor(private http: HttpClient) { }
 
   getCurrentWeather(loc: string) {
-    return this.http.get(`${environment.apiUrl}/weather?q=${loc}&appid=${apiKey}`)
+    return this.http.get(`${environment.apiUrl}/weather?units=imperial&q=${loc}&appid=${apiKey}`)
   }
 
   getForecast(loc: string) {
-    return this.http.get(`${environment.apiUrl}/forecast?q=${loc}&appid=${apiKey}`)
+    return this.http.get(`${environment.apiUrl}/forecast?units=imperial&q=${loc}&appid=${apiKey}`)
   }
 }
