@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-export const initialState = '';
+export const initialState = 'Saint Louis';
 export const SET_LOCATION = 'SET_LOCATION';
 
 export function locationReducer(state = initialState, action: any) {

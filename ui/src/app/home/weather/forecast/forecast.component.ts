@@ -22,11 +22,6 @@ export class ForecastComponent implements OnInit {
   forecast: any = <any>{};
   msg: string;
 
-  day0: string;
-  day1: string;
-  day2: string;
-  day3: string;
-
   constructor(
     private store: Store<any>,
     private weatherService: WeatherService
@@ -53,5 +48,9 @@ export class ForecastComponent implements OnInit {
       }, () => {
 
       })
+  }
+
+  resultFound() {
+    return Object.keys(this.forecast).length > 0;
   }
 }
