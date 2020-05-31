@@ -1,0 +1,23 @@
+/* Weather Panel styling */
+.panel {
+    top: 250px;
+    right: 0;
+
+    height: 30%;
+}
+
+.weather {
+    position: absolute;
+
+    top: 0;
+    height: 100%;
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+        
+    color: white;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    
+    opacity: 80%;
+}

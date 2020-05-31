@@ -1,0 +1,68 @@
+/* Clock Panel styling */
+.panel {
+    top: 0;
+    right: 0;
+}
+
+.clock {
+    position: absolute;
+
+    top: 0;
+    height: 100%;
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+        
+    color: white;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+
+    opacity: 80%;
+}
+
+div#date {
+    position: absolute;
+
+    bottom: 0;
+    height: 30%;
+    width: 100%;
+
+    margin: auto;
+
+    font-family: 'Work Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    text-align: center;
+    
+}
+
+div#date > div {
+    position: absolute;
+
+    top: 0;
+    height: 80%;
+    width: 100%;
+}
+
+div#time {
+    position: absolute;
+
+    top: 0;
+    height: 70%;
+    width: 100%;
+
+    margin: auto;
+
+    font-size: 144px;
+    font-weight: 100;
+    text-align: center;
+
+}
+
+div#time > div {
+    position: absolute;
+
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+}

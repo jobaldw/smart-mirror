@@ -1,0 +1,35 @@
+<div id="glance" *ngIf="resultFound()">
+    <div id="border"></div>
+    <div class="dayPane">
+        <div class="day">{{day0 | date: 'EEE'}}</div>
+        <div class="outlook">
+            <fa-icon [icon]="dayicon0"></fa-icon>
+        </div>
+        <div class="highs">{{forecast.daily[0].temp?.max | number:'1.0-0'}}</div>
+        <div class="lows">{{forecast.daily[0].temp?.min | number:'1.0-0'}}</div>
+    </div>
+    <div class="dayPane">
+        <div class="day">{{day1 | date: 'EEE'}}</div>
+        <div class="outlook">
+            <fa-icon [icon]="dayicon1"></fa-icon>
+        </div>
+        <div class="highs">{{forecast.daily[1].temp?.max | number:'1.0-0'}}</div>
+        <div class="lows">{{forecast.daily[1].temp?.min | number:'1.0-0'}}</div>
+    </div>
+    <div class="dayPane">
+        <div class="day">{{day2 | date: 'EEE'}}</div>
+        <div class="outlook">
+            <fa-icon [icon]="dayicon2"></fa-icon>
+        </div>
+        <div class="highs">{{forecast.daily[2].temp?.max | number:'1.0-0'}}</div>
+        <div class="lows">{{forecast.daily[2].temp?.min | number:'1.0-0'}}</div>
+    </div>
+    <div class="dayPane">
+        <div class="day">{{day3 | date:'EEE'}}</div>
+        <div class="outlook">
+            <fa-icon [icon]="dayicon3"></fa-icon>
+        </div>
+        <div class="highs">{{forecast.daily[3].temp?.max | number:'1.0-0'}}</div>
+        <div class="lows">{{forecast.daily[3].temp?.min | number:'1.0-0'}}</div>
+    </div>
+</div>
