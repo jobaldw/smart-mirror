@@ -56,7 +56,7 @@ div#description {
 /* Extra current weather styling */
 div#extras {
     bottom: 0;
-    right: 0;
+    right: 5%;
     
     height: 25%;
     width: 100%;
