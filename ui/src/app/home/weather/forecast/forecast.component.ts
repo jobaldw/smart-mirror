@@ -51,10 +51,9 @@ export class ForecastComponent implements OnInit {
       }, err => {
         if (err.error && err.error.message) {
           this.msg = err.error.message;
-          alert("1" + this.msg + "\nloc:" +  this.currentWeather.coord.lon + "\nlat:" + this.currentWeather.coord.lat)
           return;
         }
-        alert('Failed to get 4 day forecast.');
+        this.msg = "Failed to get 4 day forecast.";
       }, () => {
 
         var weekday0 = new Date();
@@ -116,10 +115,9 @@ export class ForecastComponent implements OnInit {
     }, err => {
       if (err.error && err.error.message) {
         this.msg = err.error.message;
-        alert("3" + this.msg)
         return;
       }
-      alert('Failed to get current weather.');
+      this.msg = "Failed to get current weather.";
     }, () => {
       this.searchForecast(this.currentWeather.coord.lat, this.currentWeather.coord.lon);
     })

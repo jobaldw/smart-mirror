@@ -20,6 +20,7 @@ export class CurrentComponent implements OnInit {
   loc$: Observable<string>;
   loc: string;
   currentWeather: any = <any>{};
+  rain: any = <any>{};
   msg: string;
 
   constructor(
@@ -47,9 +48,12 @@ export class CurrentComponent implements OnInit {
           this.msg = err.error.message;
           return;
         }
-        alert('Failed to get current weather.');
       }, () => {
-
+        if (this.currentWeather.rain) {
+          this.rain = (this.currentWeather.rain["1h"] * 100);
+        } else {
+          this.rain = 0;
+        }
       })
   }
 
