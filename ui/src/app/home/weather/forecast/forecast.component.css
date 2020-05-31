@@ -10,6 +10,7 @@ div#glance {
 div#border {
     position: absolute;
 
+    left: 1%;
     height: 1%;
     width: 100%;
 

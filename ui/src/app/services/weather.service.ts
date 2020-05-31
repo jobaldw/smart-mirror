@@ -13,7 +13,7 @@ export class WeatherService {
     return this.http.get(`${environment.apiUrl}/weather?units=imperial&q=${loc}&appid=${apiKey}`)
   }
 
-  getForecast(loc: string) {
-    return this.http.get(`${environment.apiUrl}/forecast?units=imperial&q=${loc}&appid=${apiKey}`)
+  getForecast(lat: string, lon: string) {
+    return this.http.get(`${environment.apiUrl}/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`)
   }
 }
