@@ -23,7 +23,7 @@
 div#date {
     position: absolute;
 
-    bottom: 0;
+    bottom: 15%;
     height: 30%;
     width: 100%;
 
@@ -47,13 +47,13 @@ div#date > div {
 div#time {
     position: absolute;
 
-    top: 0;
+    top: 12%;
     height: 70%;
     width: 100%;
 
     margin: auto;
 
-    font-size: 144px;
+    font-size: 750%; /* font-size: 144px; */
     font-weight: 100;
     text-align: center;
 

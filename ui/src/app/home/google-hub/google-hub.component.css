@@ -1,0 +1,21 @@
+/* Google Hub Panel styling */
+.panel {
+    top: 60%;
+    right: 0;
+}
+
+.hub {
+    position: absolute;
+
+    top: 0;
+    height: 100%;
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+        
+    color: white;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    
+    opacity: 80%;
+}

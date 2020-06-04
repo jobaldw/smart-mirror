@@ -2,6 +2,7 @@
 div#glance {
     position: absolute;
 
+    left: -1%;
     bottom: 0;
     height: 40%;
     width: 100%;
