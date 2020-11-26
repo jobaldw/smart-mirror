@@ -40,14 +40,26 @@ div.banner {
 
     background-color:rgb(128,128,128, 0.25);
 
+    cursor: pointer;
+
     transition: left 1s;
     transition: background-color 1s;
 }
 
-div.banner:hover {
-    left: 20%;
+div.banner#news {
+    background-color: #DB4437;
+}
 
-    background-color:rgb(128,128,128, 0.80);
+div.banner#sports {
+    background-color: #4285F4;
+}
+
+div.banner#tech {
+    background-color: #0F9D58;
+}
+
+div.banner:hover {
+    left: 10%;
 
     transition: left 1s;
 }

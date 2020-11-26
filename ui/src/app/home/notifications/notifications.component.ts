@@ -19,6 +19,14 @@ export class NotificationsComponent implements OnInit {
   sportsOutlet: string = "ESPN";
   techOutlet: string = "TechCrunch";
 
+  newsTotal: number;
+  sportsTotal: number;
+  techTotal: number;
+
+  newsCount: number;
+  sportsCount: number;
+  techCount: number;
+
   msg: string;
 
   constructor(
@@ -59,7 +67,8 @@ export class NotificationsComponent implements OnInit {
       }
       this.msg = "Failed to get news articles.";
     }, () => {
-      console.log(this.sources)
+      this.newsTotal = this.getTotal(this.news.payload.articles)
+      this.newsCount = 0
     })
   }
 
@@ -74,7 +83,8 @@ export class NotificationsComponent implements OnInit {
       }
       this.msg = "Failed to get news articles.";
     }, () => {
-      console.log(this.sources)
+      this.sportsTotal = this.getTotal(this.sports.payload.articles)
+      this.sportsCount = 0
     })
   }
 
@@ -89,7 +99,42 @@ export class NotificationsComponent implements OnInit {
       }
       this.msg = "Failed to get news articles.";
     }, () => {
-      console.log(this.sources)
+      this.techTotal = this.getTotal(this.tech.payload.articles)
+      this.techCount = 0
     })
   }
+
+  getTotal (obj: any) {
+    var count = 0;
+
+    for (var property in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, property)) {
+            count++;
+        }
+    }
+
+    return count;
+  }
+
+  nextNews(){
+      this.newsCount+=1;
+      if (this.newsCount == this.newsTotal) {
+        this.newsCount = 0
+      }
+  }
+
+  nextSports(){
+      this.sportsCount+=1;
+      if (this.sportsCount == this.sportsTotal) {
+        this.sportsCount = 0
+      }
+  }
+
+  nextTech(){
+      this.techCount+=1;
+      if (this.techCount == this.techTotal) {
+        this.techCount = 0
+      }
+  }
 }
+
