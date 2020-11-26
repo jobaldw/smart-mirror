@@ -56,13 +56,13 @@ div.provider {
     position:  relative;
 
     top: -5%;
-    left: 0;
+    left: 2%;
     height: 25%;
     width: 50%;
     
     float: left;
 
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 900;
 }
 
@@ -70,7 +70,7 @@ div.timestamp {
     position: relative;
 
     top: -5%;
-    right: 0;
+    right: 3%;
     height: 25%;
     width: 50%;
 
@@ -78,7 +78,7 @@ div.timestamp {
     float: right;
 
     font-style: italic;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 200;
     text-align: right;
 }
@@ -94,23 +94,14 @@ div.message {
     text-transform: uppercase;
 }
 
-div.header {  
-    position: absolute;
-
-    top: -45%;
-    width: 100%;
-
-    margin: auto;
-
-    /* background-color: blue; */
-
-    text-align: center;
-    text-transform: uppercase;
-}
-
 div.content {  
     top: 0%;
     width: 100%;
 
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
     text-transform: none;
 }

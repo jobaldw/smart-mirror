@@ -1,27 +1,24 @@
 <div class="panel">
     <div class="notifications">
         <div class="banner">
-            <div class="provider">CNN</div>
-            <div class="timestamp">12:45pm</div>
+            <div class="provider">{{newsOutlet}}</div>
+            <div class="timestamp">{{news.payload.articles[0].publishedAt | date:'shortTime'}}</div>
             <div class="message">
-                <div class="header">Breaking news:</div> 
-                <div class="content">Trump is an idiot. Actually that is not breaking. Sorry for the random notification.</div>
+                <div class="content">{{news.payload.articles[0].title}}</div>
             </div>
         </div>
         <div class="banner">
-            <div class="provider">CNN</div>
-            <div class="timestamp">12:45pm</div>
+            <div class="provider">{{sportsOutlet}}</div>
+            <div class="timestamp">{{sports.payload.articles[0].publishedAt | date:'shortTime'}}</div>
             <div class="message">
-                <div class="header">Breaking news:</div> 
-                <div class="content">Trump is an idiot. Actually that is not breaking. Sorry for the random notification.</div>
+                <div class="content">{{sports.payload.articles[0].title}}</div>
             </div>
         </div>
         <div class="banner">
-            <div class="provider">CNN</div>
-            <div class="timestamp">12:45pm</div>
+            <div class="provider">{{techOutlet}}</div>
+            <div class="timestamp">{{tech.payload.articles[0].publishedAt | date:'shortTime'}}</div>
             <div class="message">
-                <div class="header">Breaking news:</div> 
-                <div class="content">Trump is an idiot. Actually that is not breaking. Sorry for the random notification.</div>
+                <div class="content">{{tech.payload.articles[0].title}}</div>
             </div>
         </div>
     </div>

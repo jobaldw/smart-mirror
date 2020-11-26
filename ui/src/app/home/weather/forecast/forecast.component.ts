@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import { WeatherService } from '../../../services/weather.service';
+import { WeatherService } from '../../../services/weather/weather.service';
 
 import { faSun, faCloudSun, faCloud,  faCloudRain, faCloudSunRain, faCloudShowersHeavy, faSnowflake, faQuestion, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
@@ -41,6 +41,7 @@ export class ForecastComponent implements OnInit {
       this.getLatitiudeLongitude(loc);
     })
   }
+
   ngOnInit(): void {
   }
 
@@ -108,7 +109,7 @@ export class ForecastComponent implements OnInit {
       })
   }
 
-  getLatitiudeLongitude(loc: string) {
+   getLatitiudeLongitude(loc: string) {
     this.weatherService.getCurrentWeather(loc)
     .subscribe(res => {
       this.currentWeather = res;
@@ -122,8 +123,6 @@ export class ForecastComponent implements OnInit {
       this.searchForecast(this.currentWeather.coord.lat, this.currentWeather.coord.lon);
     })
   }
-
-
 
   resultFound() {
     return Object.keys(this.currentWeather).length > 0;
