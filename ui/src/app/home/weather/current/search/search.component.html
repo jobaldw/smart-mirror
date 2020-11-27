@@ -1,13 +1,8 @@
 <div class="search">
     <form (ngSubmit)='search(searchForm)' #searchForm='ngForm'>
         <div id="formField">
-            <div id="border"></div>
-                <label for="lo">City</label>
-                <input type="text" value="Saint Louis" [(ngModel)]='loc' #lo='ngModel' name='lo' required>
+                <input type="text" value="Saint Louis" autocomplete="off" [(ngModel)]='loc' #lo='ngModel' name='lo' required>
             <div *ngIf="lo.invalid && (lo.dirty || lo.touched)">
-                <span id="noLo" *ngIf='lo.errors.required'>
-                    <p>enter city or zip</p>
-                </span>
             </div>
         </div>
     </form>

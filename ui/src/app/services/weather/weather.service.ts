@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 const apiKey: string = environment.apiKey;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +14,7 @@ export class WeatherService {
     return this.http.get(`${environment.apiUrl}/weather?units=imperial&q=${loc}&appid=${apiKey}`)
   }
 
-  getForecast(lat: string, lon: string) {
+  getForecast(lat, lon: string) {
     return this.http.get(`${environment.apiUrl}/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`)
   }
 }

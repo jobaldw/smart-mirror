@@ -13,7 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { locationReducer } from './location-reducer';
 
 // services
-import { WeatherService } from './services/weather.service';
+import { WeatherService } from './services/weather/weather.service';
+import { NotificationsService } from './services/notifications/notifications.service';
 
 // app components
 import { AppComponent } from './app.component';
@@ -63,6 +64,7 @@ import { ForecastComponent } from './home/weather/forecast/forecast.component';
   ],
   providers: [
     WeatherService,
+    NotificationsService,
   ],
   bootstrap: [AppComponent]
 })

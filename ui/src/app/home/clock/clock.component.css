@@ -17,6 +17,8 @@
     color: white;
     font-family: Tahoma, Verdana, Segoe, sans-serif;
 
+    cursor: default;
+
     opacity: 80%;
 }
 
