@@ -33,30 +33,30 @@ export class NotificationsComponent implements OnInit {
     private store: Store<any>,
     private NotificationsService: NotificationsService
   ) { 
-    this.geNewsArticles()
-    this.geSportsArticles()
+    this.getNewsArticles()
+    this.getSportsArticles()
     this.getTechArticles()
   }
 
   ngOnInit(): void {
   }
 
-  getSources() {
-    this.NotificationsService.getSources()
-    .subscribe(res => {
-      this.sources = res;
-    }, err => {
-      if (err.error && err.error.message) {
-        this.msg = err.error.message;
-        return;
-      }
-      this.msg = "Failed to get news sources.";
-    }, () => {
-      console.log(this.sources)
-    })
-  }
+  // getSources() {
+  //   this.NotificationsService.getSources()
+  //   .subscribe(res => {
+  //     this.sources = res;
+  //   }, err => {
+  //     if (err.error && err.error.message) {
+  //       this.msg = err.error.message;
+  //       return;
+  //     }
+  //     this.msg = "Failed to get news sources.";
+  //   }, () => {
+  //     console.log(this.sources)
+  //   })
+  // }
 
-  geNewsArticles() {
+  getNewsArticles() {
     this.NotificationsService.getArticles("associated-press")
     .subscribe(res => {
       this.news = res;
@@ -72,7 +72,7 @@ export class NotificationsComponent implements OnInit {
     })
   }
 
-  geSportsArticles() {
+  getSportsArticles() {
     this.NotificationsService.getArticles("espn")
     .subscribe(res => {
       this.sports = res;
@@ -104,18 +104,6 @@ export class NotificationsComponent implements OnInit {
     })
   }
 
-  getTotal (obj: any) {
-    var count = 0;
-
-    for (var property in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, property)) {
-            count++;
-        }
-    }
-
-    return count;
-  }
-
   nextNews(){
       this.newsCount+=1;
       if (this.newsCount == this.newsTotal) {
@@ -135,6 +123,33 @@ export class NotificationsComponent implements OnInit {
       if (this.techCount == this.techTotal) {
         this.techCount = 0
       }
+  }
+
+  getTotal (obj: any) {
+    var count = 0;
+
+    for (var property in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, property)) {
+            count++;
+        }
+    }
+
+    return count;
+  }
+
+  newsFound() {
+    return Object.keys(this.news).length > 0;
+
+  }
+
+  sportsFound() {
+    return Object.keys(this.sports).length > 0;
+
+  }
+
+  techFound() {
+    return Object.keys(this.tech).length > 0;
+
   }
 }
 
