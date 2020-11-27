@@ -18,13 +18,6 @@ type Config struct {
 	MongoURI    string            `json:"mongo_uri"`
 	Database    string            `json:"database"`
 	Collections map[string]string `json:"collections"`
-
-	Clients map[string]Client `json:"clients"`
-}
-
-//Client API
-type Client struct {
-	URL string `json:"url"`
 }
 
 //Marshal configurables for the application

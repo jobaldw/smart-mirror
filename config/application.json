@@ -8,13 +8,5 @@
     "collections": {
         "show": "shows",
         "movie": "movies"
-    },
-    "clients": {
-        "news" : {
-            "url": "https://newsapi.org"
-        },
-        "weather" : {
-            "url": "http://api.openweathermap.org"
-        }
     }
 }
