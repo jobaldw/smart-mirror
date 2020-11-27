@@ -8,7 +8,7 @@ import (
 	"github.com/tkanos/gonfig"
 )
 
-//Config application
+//Config used to configure app
 type Config struct {
 	AppName    string       `json:"app"`
 	Port       int          `json:"port"`
@@ -20,7 +20,7 @@ type Config struct {
 	Collections map[string]string `json:"collections"`
 }
 
-//Marshal configurables for the application
+//Marshal retrieves configurables for the app
 func Marshal() (conf Config, err error) {
 	err = gonfig.GetConf("config/application.json", &conf)
 	if err != nil {
