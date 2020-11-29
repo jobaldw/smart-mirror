@@ -67,7 +67,7 @@ export class NotificationsComponent implements OnInit {
       }
       this.msg = "Failed to get news articles.";
     }, () => {
-      this.newsTotal = this.getTotal(this.news.payload.articles)
+      this.newsTotal = this.getTotal(this.news.articles)
       this.newsCount = 0
     })
   }
@@ -83,7 +83,7 @@ export class NotificationsComponent implements OnInit {
       }
       this.msg = "Failed to get news articles.";
     }, () => {
-      this.sportsTotal = this.getTotal(this.sports.payload.articles)
+      this.sportsTotal = this.getTotal(this.sports.articles)
       this.sportsCount = 0
     })
   }
@@ -99,7 +99,7 @@ export class NotificationsComponent implements OnInit {
       }
       this.msg = "Failed to get news articles.";
     }, () => {
-      this.techTotal = this.getTotal(this.tech.payload.articles)
+      this.techTotal = this.getTotal(this.tech.articles)
       this.techCount = 0
     })
   }

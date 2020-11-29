@@ -7,11 +7,11 @@
                 <div class="unavaliable">No US news at this time</div>
             </div>
         </div>
-        <div class="banner" id="news" (click)="nextNews()" title={{news.payload.articles[newsCount].description}} *ngIf='newsFound()'>
+        <div class="banner" id="news" (click)="nextNews()" title={{news.articles[newsCount].description}} *ngIf='newsFound()'>
             <div class="provider">{{newsOutlet}}</div>
-            <div class="timestamp">{{news.payload.articles[newsCount].publishedAt | date:'shortTime'}}</div>
+            <div class="timestamp">{{news.articles[newsCount].publishedAt | date:'shortTime'}}</div>
             <div class="message">
-                <div class="content">{{news.payload.articles[newsCount].title}}</div>
+                <div class="content">{{news.articles[newsCount].title}}</div>
             </div>
         </div>
         <div class="bannerUnavaliable" *ngIf='!sportsFound()'>
@@ -19,22 +19,22 @@
                 <div class="unavaliable">No sports news at this time</div>
             </div>
         </div>
-        <div class="banner" id="sports" (click)="nextSports()" title={{sports.payload.articles[sportsCount].description}} *ngIf='sportsFound()'>
+        <div class="banner" id="sports" (click)="nextSports()" title={{sports.articles[sportsCount].description}} *ngIf='sportsFound()'>
             <div class="provider">{{sportsOutlet}}</div>
-            <div class="timestamp">{{sports.payload.articles[sportsCount].publishedAt | date:'shortTime'}}</div>
+            <div class="timestamp">{{sports.articles[sportsCount].publishedAt | date:'shortTime'}}</div>
             <div class="message">
-                <div class="content">{{sports.payload.articles[sportsCount].title}}</div>
+                <div class="content">{{sports.articles[sportsCount].title}}</div>
             </div>
         </div>
         <div class="bannerUnavaliable" *ngIf='!techFound()'>
             <div class="message">
                 <div class="unavaliable">No tech news at this time</div>
             </div>        </div>
-        <div class="banner" id="tech" (click)="nextTech()" title={{tech.payload.articles[techCount].description}} *ngIf='techFound()'>
+        <div class="banner" id="tech" (click)="nextTech()" title={{tech.articles[techCount].description}} *ngIf='techFound()'>
             <div class="provider">{{techOutlet}}</div>
-            <div class="timestamp">{{tech.payload.articles[techCount].publishedAt | date:'shortTime'}}</div>
+            <div class="timestamp">{{tech.articles[techCount].publishedAt | date:'shortTime'}}</div>
             <div class="message">
-                <div class="content">{{tech.payload.articles[techCount].title}}</div>
+                <div class="content">{{tech.articles[techCount].title}}</div>
             </div>
         </div>
     </div>
