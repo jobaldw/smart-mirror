@@ -7,38 +7,19 @@
                 <div class="unavaliable">No US news at this time</div>
             </div>
         </div> -->
-        <div class="banner" title={{calendar.events[0].organizer}}>
+        <div class="banner" *ngFor="let event of calendar.events; index as i" title="sent from {{event.organizer}}">
+            <div class="status">
+                <div class="user">J</div>
+            </div>
             <div class="time">
-                <div class="timestamp">{{calendar.events[0].start | date:'MMM dd, yy'}}</div>
-                <div class="duration">{{calendar.events[0].start | date:'MMM dd, yy'}}</div>
+                <div class="timestamp">{{event.start | date:'EEE, MMM dd'}}</div>
+                <div class="duration">{{event.start | date:'h:mm a'}} </div>
             </div>
-            <div class="status"></div>
             <div class="content">
-                <div class="summary">Cougar Pride Christmas Food Drive</div>
-                <div class="location"><fa-icon [icon]="location"></fa-icon> SIUE Morris University Center</div>
-            </div>
-        </div>
-        <div class="banner" title={{calendar.events[3].organizer}}>
-            <div class="time">
-                <div class="timestamp">{{calendar.events[3].start | date:'MMM dd, yy'}}</div>
-                <div class="duration">{{calendar.events[3].start | date:'h:mm a'}} </div>
-            </div>
-            <div class="status"></div>
-            <div class="content">
-                <div class="summary">{{calendar.events[3].content}}</div>
-                <div class="location">{{calendar.events[3].location}}</div>
-            </div>
-        </div>
-        <div class="banner" title={{calendar.events[6].organizer}}>
-            <div class="time">
-                <div class="timestamp">{{calendar.events[6].start | date:'MMM dd, yy'}}</div>
-                <div class="duration">{{calendar.events[6].start | date:'h:mm a'}}</div>
-            </div>
-            <div class="status"></div>
-            <div class="content">
-                <div class="summary">{{calendar.events[6].content}}</div>
-                
-                <div class="location"><fa-icon [icon]="location"></fa-icon> {{calendar.events[6].location}}</div>
+                <div class="summary">{{event.content}}</div>
+                <div class="location" *ngIf="hasLocation(i)">
+                    <fa-icon [icon]="location"></fa-icon> {{event.location}}
+                </div>
             </div>
         </div>
     </div>

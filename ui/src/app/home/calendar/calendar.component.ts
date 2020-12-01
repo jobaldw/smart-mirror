@@ -10,6 +10,7 @@ import { faMapMarker, IconDefinition } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
 })
+
 export class CalendarComponent implements OnInit {
   calendar: any = <any>{};
 
@@ -39,5 +40,9 @@ export class CalendarComponent implements OnInit {
       }
       this.msg = "Failed to get calendar events.";
     }, () => {})
+  }
+
+  hasLocation(int) {
+    return (this.calendar.events[int].location != "");
   }
 }
