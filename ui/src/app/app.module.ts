@@ -15,6 +15,7 @@ import { locationReducer } from './location-reducer';
 // services
 import { WeatherService } from './services/weather/weather.service';
 import { NotificationsService } from './services/notifications/notifications.service';
+import { CalendarService } from './services/calendar/calendar.service';
 
 // app components
 import { AppComponent } from './app.component';
@@ -28,13 +29,13 @@ import { RecentlyAddedComponent } from './entainment/recently-added/recently-add
 import { WelcomeComponent } from './home/welcome/welcome.component';
 import { ClockComponent } from './home/clock/clock.component';
 import { WeatherComponent } from './home/weather/weather.component';
-
-import { CalendarComponent } from './home/calendar/calendar.component';
-import { GoogleHubComponent } from './home/google-hub/google-hub.component';
 import { NotificationsComponent } from './home/notifications/notifications.component';
+import { CalendarComponent } from './home/calendar/calendar.component';
 import { CurrentComponent } from './home/weather/current/current.component';
 import { SearchComponent } from './home/weather/current/search/search.component';
 import { ForecastComponent } from './home/weather/forecast/forecast.component';
+
+import { GoogleHubComponent } from './home/google-hub/google-hub.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { ForecastComponent } from './home/weather/forecast/forecast.component';
   providers: [
     WeatherService,
     NotificationsService,
+    CalendarService,
   ],
   bootstrap: [AppComponent]
 })
