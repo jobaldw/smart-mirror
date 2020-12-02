@@ -45,4 +45,10 @@ export class CalendarComponent implements OnInit {
   hasLocation(int) {
     return (this.calendar.events[int].location != "");
   }
+
+  isToday(date: string) {
+    var today = new Date();
+    var input = new Date(date);
+    return (input.setHours(0,0,0,0) == today.setHours(0,0,0,0));
+  }
 }

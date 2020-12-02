@@ -1,18 +1,16 @@
 <div class="panel">
     <div class="calendar">
-        <!-- <div class="bannerUnavaliable" *ngIf='!newsFound()'>
-            <div class="provider"></div>
-            <div class="timestamp"></div>
-            <div class="message">
-                <div class="unavaliable">No US news at this time</div>
-            </div>
-        </div> -->
         <div class="banner" *ngFor="let event of calendar.events; index as i" title="sent from {{event.organizer}}">
             <div class="status">
                 <div class="user">J</div>
             </div>
             <div class="time">
-                <div class="timestamp">{{event.start | date:'EEE, MMM dd'}}</div>
+                <div class="timestamp" *ngIf="isToday(event.start | date:'MM/dd/yyyy'); else elseBlock">
+                    TODAY
+                </div>
+                <ng-template #elseBlock>
+                    <div class="timestamp">{{event.start | date:'EEE, MMM dd'}}</div>
+                </ng-template>
                 <div class="duration">{{event.start | date:'h:mm a'}} </div>
             </div>
             <div class="content">
