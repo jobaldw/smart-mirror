@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 
 import { CalendarService } from '../../services/calendar/calendar.service';
 
-import { faMapMarker, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt, faSyncAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-calendar',
@@ -15,6 +15,7 @@ export class CalendarComponent implements OnInit {
   calendar: any = <any>{};
 
   location: IconDefinition;
+  refresh: IconDefinition;
 
   msg: string;
 
@@ -23,7 +24,9 @@ export class CalendarComponent implements OnInit {
     private CalendarSerice: CalendarService
   ) {
     this.getEvents()
-    this.location = faMapMarker
+    this.location = faMapMarkerAlt
+    this.refresh = faSyncAlt
+
   }
 
   ngOnInit(): void {

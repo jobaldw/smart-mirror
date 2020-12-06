@@ -1,0 +1,25 @@
+.panel {
+    top: 0;
+    left: 0;
+}
+
+.pageNotFound {
+    position: absolute;
+
+    top: 0;
+    height: 100%;
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+        
+    color: white;
+    
+    cursor: default;
+
+    opacity: 80%;
+}
+
+div#message {
+    font-size: 108px;
+}

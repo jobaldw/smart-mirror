@@ -57,31 +57,27 @@ li a {
 }
 
 li a#home {
-    left: 30%;
+    left: 33%;
 }
 
 li a#entertainment {
-    left: 35%;
+    left: 38%;
 }
 
 li a#music {
-    left: 40%;
+    left: 43%;
 }
 
 li a#news {
-    left: 45%;
+    left: 48%;
 }
 
 li a#calendar {
-    left: 50%;
-}
-
-li a#notifcations {
-    left: 55%;
+    left: 53%;
 }
 
 li a#settings {
-    left: 60%;
+    left: 58%;
 }
 
 /* On hover styling */
@@ -96,7 +92,7 @@ li a:hover {
 }
 
 a#home:hover  {
-    color: gray;
+    color: #ffffff;
 }
 
 a#entertainment:hover  {
@@ -113,10 +109,6 @@ a#news:hover  {
 
 a#calendar:hover  {
     color: #0F9D58;
-}
-
-a#notifcations:hover  {
-    color: #ffffff;
 }
 
 a#settings:hover  {
