@@ -14,6 +14,7 @@ import { locationReducer } from './location-reducer';
 
 // services
 import { CalendarService } from './services/calendar/calendar.service';
+import { EntertainmentService } from './services/entertainment/entertainment.service';
 import { NotificationsService } from './services/notifications/notifications.service';
 import { WeatherService } from './services/weather/weather.service';
 
@@ -73,6 +74,7 @@ import { GoogleHubComponent } from './home/google-hub/google-hub.component';
   ],
   providers: [
     CalendarService,
+    EntertainmentService,
     NotificationsService,
     WeatherService,
   ],

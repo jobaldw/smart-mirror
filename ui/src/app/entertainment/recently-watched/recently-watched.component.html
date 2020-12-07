@@ -4,37 +4,18 @@
       <div>Recently Watched</div>
     </div>
     <div class="content vertical-center horizational-center">
-      <div class="movie">
+      <div class="movie" *ngFor="let element of resp.elements; index as i" title="{{element.Plot}}">
         <div class="poster">
-          <img src="assets/movie-poster-template.png" width="100%" title="the title"/>
+          <img src="{{element.Poster}}" width="100%" height="100%" title="{{element.Title}}"/>
         </div>
         <div class="description">
-          <div class="stream">Netflix</div>
-          <div class="title">Schitt's Creek: The Movie</div>
-          <div class="genre">Comedy, Sitcom</div>
-          <div class="runtime">2:15</div>
-        </div>
-      </div>
-      <div class="movie">
-        <div class="poster">
-          <img src="assets/movie-poster-template.png" width="100%" title="the title"/>
-        </div>
-        <div class="description">
-          <div class="stream">Hulu</div>
-          <div class="title">Sorry to Bother You</div>
-          <div class="genre">Comedy, Thriller</div>
-          <div class="runtime">2:36</div>
-        </div>
-      </div>
-      <div class="movie">
-        <div class="poster">
-          <img src="assets/movie-poster-template.png" width="100%" title="the title"/>
-        </div>
-        <div class="description">
-          <div class="stream">Disney+</div>
-          <div class="title">Lion King</div>
-          <div class="genre">Family, Musical</div>
-          <div class="runtime">1:56</div>
+          <!-- <div class="stream">{{element.platform}}</div> -->
+          <div class="stream {{getPlatform(i)}}">{{element.platform}}</div>
+          <div class="title">{{element.Title}}</div>
+          <div class="title">({{element.Year}})</div>
+          <div class="gradient"></div>
+          <div class="genre">{{element.Genre}}</div>
+          <div class="runtime">{{element.Runtime}}</div>
         </div>
       </div>
     </div>
