@@ -36,8 +36,49 @@ div.header {
     background-color: #000000;
 }
 
-div.header > div{
+div.name{
+    float: left;
+
     font-size: 36px;
+}
+
+div.search{
+    height: 100%;
+    width: 82%;
+
+    margin-left: 1%;
+    float: left;
+
+    text-align: center;
+    font-size: 24px;
+}
+
+label {
+    height: 50%;
+    
+    line-height: 48px;
+    padding: 0 1% 0 1%;
+}
+
+#title {
+    height: 30px;
+    width: 18%;
+
+    font-size: 20px;
+}
+
+#genre {
+    height: 30px;
+    width: 10%;
+
+    font-size: 20px;
+}
+
+#platform {
+    height: 30px;
+    width: 12%;
+
+    font-size: 20px;
 }
 
 .vertical-center {
@@ -122,37 +163,34 @@ div.stream {
 
     padding-left: 5%;
 
-    /* background-color: red; */
     font-size: 14pt;
     font-weight: bold;
     text-align: center;
 }
 
 div.disney {
-    background-color: blue;
+    background-image: linear-gradient(to bottom,rgb(6, 10, 46), rgb(35, 70, 152));    
 }
 
 div.hbo {
-    background-color: purple;
+    background-image: linear-gradient(to right, rgb(137, 43, 225), rgb(62, 112, 210));    
 }
 
 div.hulu {
-    background-color: green;
+    background-color: #1be07f;
 }
 
 div.netflix {
-    background-color: red;
+    background-image: linear-gradient(90deg, rgba(152,0,0,1) 0%, rgba(222,9,19,1) 50%, rgba(152,0,0,1) 100%);
 }
 
 div.plex {
-    background-color: orange;
+    background-color: #d89210;
 }
 
 div.theaters {
     background-color: black;
 }
-
-
 
 div.title {
     position: relative;

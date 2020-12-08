@@ -2,8 +2,7 @@
     <form (ngSubmit)='search(searchForm)' #searchForm='ngForm'>
         <div id="formField">
                 <input type="text" value="Saint Louis" autocomplete="off" [(ngModel)]='loc' #lo='ngModel' name='lo' required>
-            <div *ngIf="lo.invalid && (lo.dirty || lo.touched)">
-            </div>
+            <div *ngIf="lo.invalid && (lo.dirty || lo.touched)"></div>
         </div>
     </form>
 </div>
