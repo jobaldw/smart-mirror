@@ -9,7 +9,7 @@
             <input id="title" name="title" type="text" autocomplete="off" [(ngModel)]='title' #lo='ngModel'>
             <label for="genre">Genre</label>
             <select id="genre" name="genre" [(ngModel)]='genre' #lo='ngModel'>
-              <option value="" selected>all</option>
+              <option value="" selected>All</option>
               <option value="Action">Action</option>
               <option value="Adventure">Adventure</option>
               <option value="Animation">Animation</option>
@@ -25,7 +25,7 @@
             </select>
             <label for="platform">Stream</label>
             <select id="platform" name="platform" [(ngModel)]='platform' #lo='ngModel'>
-              <option value="" selected>all</option>
+              <option value="" selected>All</option>
               <option value="Amazon Prime">Amazon Prime</option>
               <option value="Disney">Disney+</option>
               <option value="HBO Max">HBO Max</option>
@@ -35,9 +35,10 @@
               <option value="In Theaters">Theaters</option>
             </select>
             <label for="movie"> Movies</label>
-            <input id="movie" type="checkbox" name="movie" checked [(ngModel)]='movie' #lo='ngModel'>
+            <input id="movie" type="checkbox" name="movie" [(ngModel)]='movie' #lo='ngModel'>
             <label for="series"> Shows</label>
-            <input id="series" type="checkbox" name="series" checked [(ngModel)]='series' #lo='ngModel'>
+            <input id="series" type="checkbox" name="series" [(ngModel)]='series' #lo='ngModel'>
+            <input id="submit" type="submit" value="search">
           </div>
         </form>
       </div>

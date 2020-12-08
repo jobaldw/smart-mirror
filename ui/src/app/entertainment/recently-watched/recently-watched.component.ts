@@ -26,6 +26,11 @@ export class RecentlyWatchedComponent implements OnInit {
     private EntertainmentService: EntertainmentService
   ) {  
     this.getTitles()
+
+    this.movie = true
+    this.series = true
+    this.genre = ""
+    this.platform = ""
   }
 
   ngOnInit(): void {

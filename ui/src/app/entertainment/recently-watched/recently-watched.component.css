@@ -51,6 +51,11 @@ div.search{
 
     text-align: center;
     font-size: 24px;
+    border: none;
+}
+
+input:focus, select:focus {
+    outline: none;
 }
 
 label {
@@ -77,6 +82,17 @@ label {
 #platform {
     height: 30px;
     width: 12%;
+
+    font-size: 20px;
+}
+
+input[type=checkbox] {
+    transform: scale(2.5);
+}
+
+input[type=submit] {
+    margin-left: 2%;
+    padding: .25%;
 
     font-size: 20px;
 }
