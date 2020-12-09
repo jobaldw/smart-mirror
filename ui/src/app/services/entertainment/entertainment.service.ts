@@ -27,4 +27,16 @@ export class EntertainmentService {
 
     return this.http.get(`${environment.entertainmentAPIURL}/v1/watchlist`, {params: params})
   }
+
+  searchTitles(title: string) {
+    return this.http.get(`${environment.entertainmentAPIURL}/v1/search/${title}`)
+  }
+
+  addTitles(title: string, platform: string) {
+    return this.http.get(`${environment.entertainmentAPIURL}/v1/retrieve/${title}?platform=${platform}`)
+  }
+
+  removeTitle(id: string) {
+    return this.http.delete(`${environment.entertainmentAPIURL}/v1/watchlist/${id}`)
+  }
 }

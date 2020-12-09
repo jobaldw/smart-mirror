@@ -24,8 +24,7 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 
 // entertainment components
 import { EntertainmentComponent } from './entertainment/entertainment.component';
-import { RecentlyAddedComponent } from './entertainment/recently-added/recently-added.component';
-import { RecentlyWatchedComponent } from './entertainment/recently-watched/recently-watched.component';
+import { WatchListComponent } from './entertainment/watch-list/watch-list.component';
 
 // home components
 import { HomeComponent } from './home/home.component';
@@ -56,8 +55,8 @@ import { GoogleHubComponent } from './home/google-hub/google-hub.component';
     NavigationBarComponent,
     NotificationsComponent,
     PageNotFoundComponent,
-    RecentlyAddedComponent,
-    RecentlyWatchedComponent,
+    WatchListComponent,
+    WatchListComponent,
     SearchComponent,
     WeatherComponent,
     WelcomeComponent,

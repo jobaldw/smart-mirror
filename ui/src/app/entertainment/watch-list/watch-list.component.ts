@@ -1,25 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { NgForm } from '@angular/forms';
+import { faPlus, faMinus, faTimes, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 import { EntertainmentService } from '../../services/entertainment/entertainment.service';
 
 @Component({
-  selector: 'app-recently-watched',
-  templateUrl: './recently-watched.component.html',
-  styleUrls: ['./recently-watched.component.css']
+  selector: 'app-watch-list',
+  templateUrl: './watch-list.component.html',
+  styleUrls: ['./watch-list.component.css']
 })
-export class RecentlyWatchedComponent implements OnInit {
+export class WatchListComponent implements OnInit {
   resp: any = <any>{};
-  
+  respOMBD: any = <any>{};
+  result: any = <any>{};  
+
   title: string
+  ombdTitles: string
   genre: string
-  platform: string  
+  platform: string; streamer: string
   movie: boolean
   series: boolean
   
-  msg: string;
+  add: IconDefinition;
+  remove: IconDefinition;
+  stop: IconDefinition;
+  
+  adding: boolean
+  settingStreamer: boolean
 
+  msg: string;
 
   constructor(
     private store: Store<any>,
@@ -31,12 +41,48 @@ export class RecentlyWatchedComponent implements OnInit {
     this.series = true
     this.genre = ""
     this.platform = ""
+
+    this.add = faPlus
+    this.remove = faMinus
+    this.stop = faTimes
+
+    this.adding = false
+    this.settingStreamer = false
   }
 
   ngOnInit(): void {
   }
 
-  search(searchForm: NgForm) {
+  addTitle(title: string) {
+    this.EntertainmentService.addTitles(title, this.streamer)
+    .subscribe(res => {
+      this.respOMBD = res;
+    }, err => {
+      if (err.error && err.error.message) {
+        this.msg = err.error.message;
+        return;
+      }
+      this.msg = "Failed to get OMBD titles.";
+    }, () => {
+      location.reload();
+    })
+  }
+
+  searchOMBD(searchForm: NgForm) {
+    this.EntertainmentService.searchTitles(this.ombdTitles)
+    .subscribe(res => {
+      this.respOMBD = res;
+    }, err => {
+      if (err.error && err.error.message) {
+        this.msg = err.error.message;
+        return;
+      }
+      this.msg = "Failed to find OMBD titles.";
+    }, () => {
+    })
+  }
+
+  searchWatchlist(searchForm: NgForm) {
     let type = ""
     if (this.movie) {
       type = "movie"
@@ -60,7 +106,7 @@ export class RecentlyWatchedComponent implements OnInit {
         this.msg = err.error.message;
         return;
       }
-      this.msg = "Failed to get titles.";
+      this.msg = "Failed to find titles.";
     }, () => {
     })
   }
@@ -102,5 +148,26 @@ export class RecentlyWatchedComponent implements OnInit {
         return "theaters"
     }
     return ""
+  }
+
+  toggleOverlay() {
+    if (this.adding == false) {
+      this.adding = true
+    } else {
+      this.adding = false
+    }
+  }
+  
+  toggleStreamer() {
+    if (this.settingStreamer == false) {
+      this.settingStreamer = true
+    } else {
+      this.settingStreamer = false
+    }
+  }
+
+  setStreamer(value: string, title: string) {
+    this.streamer = value
+    this.addTitle(title)
   }
 }
