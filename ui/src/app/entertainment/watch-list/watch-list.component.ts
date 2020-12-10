@@ -14,6 +14,8 @@ export class WatchListComponent implements OnInit {
   resp: any = <any>{};
   respOMBD: any = <any>{};
   result: any = <any>{};  
+  
+  addedTitle: string
 
   title: string
   ombdTitles: string
@@ -82,7 +84,7 @@ export class WatchListComponent implements OnInit {
     })
   }
 
-  searchWatchlist(searchForm: NgForm) {
+  queryWatchlist(searchForm: NgForm) {
     let type = ""
     if (this.movie) {
       type = "movie"
@@ -158,7 +160,8 @@ export class WatchListComponent implements OnInit {
     }
   }
   
-  toggleStreamer() {
+  toggleStreamer(int: number) {
+    this.addedTitle = this.respOMBD.Search[int].Title
     if (this.settingStreamer == false) {
       this.settingStreamer = true
     } else {
@@ -166,8 +169,8 @@ export class WatchListComponent implements OnInit {
     }
   }
 
-  setStreamer(value: string, title: string) {
+  setStreamer(value: string) {
     this.streamer = value
-    this.addTitle(title)
+    this.addTitle(this.addedTitle)
   }
 }

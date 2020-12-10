@@ -1,61 +1,63 @@
 <div class="panel">
-  <div class="recent">
+  <div class="list">
     <div class="header">
-      <div class="name">Watchlist</div>
-      <div class="watchlistSearch">
-        <form (ngSubmit)='searchWatchlist(searchForm)' #searchForm='ngForm'>
-          <div id="formField">
-            <label for="listTitle">Search</label>
-            <input id="listTitle" name="title" type="text" autocomplete="off" [(ngModel)]='title' #lo='ngModel'>
-            <label for="genre">Genre</label>
-            <select id="genre" name="genre" [(ngModel)]='genre' #lo='ngModel'>
-              <option value="" selected>All</option>
-              <option value="Action">Action</option>
-              <option value="Adventure">Adventure</option>
-              <option value="Animation">Animation</option>
-              <option value="Drama">Drama</option>
-              <option value="Comedy">Comedy</option>
-              <option value="Family">Family</option>
-              <option value="Fantasy">Fantasy</option>
-              <option value="Horror">Horror</option>
-              <option value="Musical">Musical</option>
-              <option value="Romance">Romance</option>
-              <option value="Sci-Fi">Sci-Fi</option>
-              <option value="Thriller">Thriller</option>
-            </select>
-            <label for="platform">Stream</label>
-            <select id="platform" name="platform" [(ngModel)]='platform' #lo='ngModel'>
-              <option value="" selected>All</option>
-              <option value="Disney">Disney+</option>
-              <option value="HBO Max">HBO Max</option>
-              <option value="Hulu">Hulu</option>
-              <option value="Netflix">Netflix</option>
-              <option value="Plex">Plex</option>
-              <option value="Prime Video">Prime Video</option>
-              <option value="In Theaters">Theaters</option>
-            </select>
-            <label for="movie"> Movies</label>
-            <input id="movie" type="checkbox" name="movie" [(ngModel)]='movie' #lo='ngModel'>
-            <label for="series"> Shows</label>
-            <input id="series" type="checkbox" name="series" [(ngModel)]='series' #lo='ngModel'>
-            <input id="submit" type="submit" value="search">
-          </div>
+      <div class="header-title">Watchlist</div>
+      <div class="header-query">
+        <form (ngSubmit)='queryWatchlist(searchForm)' #searchForm='ngForm'>
+          <!-- search bar -->
+          <label for="query-title">Search</label>
+          <input id="query-title" name="title" type="text" autocomplete="off" [(ngModel)]='title' #lo='ngModel'>
+          <!-- genre dropdown -->
+          <label for="query-genre">Genre</label>
+          <select id="query-genre" name="genre" [(ngModel)]='genre' #lo='ngModel'>
+            <option value="" selected>All</option>
+            <option value="Action">Action</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Animation">Animation</option>
+            <option value="Drama">Drama</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Family">Family</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Horror">Horror</option>
+            <option value="Musical">Musical</option>
+            <option value="Romance">Romance</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+            <option value="Thriller">Thriller</option>
+          </select>
+          <!-- platform dropdown -->
+          <label for="query-platform">Stream</label>
+          <select id="query-platform" name="platform" [(ngModel)]='platform' #lo='ngModel'>
+            <option value="" selected>All</option>
+            <option value="Disney">Disney+</option>
+            <option value="HBO Max">HBO Max</option>
+            <option value="Hulu">Hulu</option>
+            <option value="Netflix">Netflix</option>
+            <option value="Plex">Plex</option>
+            <option value="Prime Video">Prime Video</option>
+            <option value="In Theaters">Theaters</option>
+          </select>
+          <!-- type checkboxes -->
+          <label for="query-movie"> Movies</label>
+          <input id="query-movie" name="movie" type="checkbox" [(ngModel)]='movie' #lo='ngModel'>
+          <label for="query-series"> Shows</label>
+          <input id="query-series" name="series" type="checkbox" [(ngModel)]='series' #lo='ngModel'>
+          <!-- submit button -->
+          <input id="query-submit" name="submit" type="submit" value="search">
         </form>
       </div>
-      <div class="add" (click)="toggleOverlay()">
-        <fa-icon [icon]="add"></fa-icon>
+      <div class="header-add">
+        <fa-icon [icon]="add" (click)="toggleOverlay()"></fa-icon>
       </div>
     </div>
     <div class="content">
       <div class="movie" *ngFor="let element of resp.elements; index as i" title="{{element.Plot}}">
-        <div class="poster">
+        <div class="movie-poster">
           <img src="{{element.Poster}}" width="100%" height="100%" title="{{element.Title}}" />
         </div>
-        <div class="description">
-          <div class="stream {{getPlatform(i)}}">{{element.platform}}</div>
+        <div class="movie-description">
+          <div class="platform {{getPlatform(i)}}">{{element.platform}}</div>
           <div class="title">{{element.Title}}</div>
           <div class="title">({{element.Year}})</div>
-          <div class="gradient"></div>
           <div class="genre">{{element.Genre}}</div>
           <div class="runtime">{{element.Runtime}}</div>
         </div>
@@ -64,30 +66,31 @@
     <div *ngIf="adding">
       <div class="overlay"></div>
       <form (ngSubmit)='searchOMBD(searchForm)' #searchForm='ngForm'>
-        <div class="titleSearch">
-          <div class="stop" (click)="toggleOverlay()">
-            <fa-icon [icon]="stop"></fa-icon>
+        <div class="overlay-search">
+          <!-- cancel search -->
+          <div class="search-stop">
+            <fa-icon [icon]="stop" (click)="toggleOverlay()"></fa-icon>
           </div>
-          <input id="ombdTitle" name="ombdTitle" type="text" placeholder="seach for title" autocomplete="off"
+          <!-- search bar -->
+          <input id="search-title" name="ombdTitle" type="text" placeholder="seach for title" autocomplete="off"
             [(ngModel)]='ombdTitles' #lo='ngModel'>
-          <div class="result">
-            <div class="results" *ngFor="let ombdElement of respOMBD.Search; index as i">
-              <div class="results">
-                <div class="poster2">
-                  <img src="{{ombdElement.Poster}}" width="100%" height="100%" title="{{ombdElement.Year}}" />
-                </div>
-                <div class="title2" title="{{ombdElement.Plot}}" (click)="toggleStreamer()">
-                  {{ombdElement.Title}}
-                </div>
-                <div class="setStream" *ngIf="settingStreamer">
-                  <div class="streamers disney" (click)="setStreamer('Disney', ombdElement.Title)">Disney+</div>
-                  <div class="streamers hbo" (click)="setStreamer('HBO Max', ombdElement.Title)">HBO Max</div>
-                  <div class="streamers hulu" (click)="setStreamer('Hulu', ombdElement.Title)">Hulu</div>
-                  <div class="streamers netflix" (click)="setStreamer('Netflix', ombdElement.Title)">Netflix</div>
-                  <div class="streamers plex" (click)="setStreamer('Plex', ombdElement.Title)">Plex</div>
-                  <div class="streamers prime" (click)="setStreamer('Prime Video', ombdElement.Title)">Prime Video</div>
-                  <div class="streamers theaters" (click)="setStreamer('In Theaters', ombdElement.Title)">In Theaters</div>
-                </div>
+          <!-- search results dropdown -->
+          <div class="search-results">
+            <div class="result" *ngFor="let ombdElement of respOMBD.Search; index as i">
+              <div class="result-poster">
+                <img src="{{ombdElement.Poster}}" width="100%" height="100%" title="{{ombdElement.Year}}" />
+              </div>
+              <div class="result-title" title="{{ombdElement.Plot}}" (click)="toggleStreamer(i)">
+                {{ombdElement.Title}}
+              </div>
+              <div class="result-platform" *ngIf="settingStreamer">
+                <div class="platforms disney" (click)="setStreamer('Disney')">Disney+</div>
+                <div class="platforms hbo" (click)="setStreamer('HBO Max')">HBO Max</div>
+                <div class="platforms hulu" (click)="setStreamer('Hulu')">Hulu</div>
+                <div class="platforms netflix" (click)="setStreamer('Netflix')">Netflix</div>
+                <div class="platforms plex" (click)="setStreamer('Plex')">Plex</div>
+                <div class="platforms prime" (click)="setStreamer('Prime Video')">Prime Video</div>
+                <div class="platforms theaters" (click)="setStreamer('In Theaters')">In Theaters</div>
               </div>
             </div>
           </div>
