@@ -56,6 +56,9 @@
         </div>
         <div class="movie-description">
           <div class="platform {{getPlatform(i)}}">{{element.platform}}</div>
+          <div class="remove">
+            <fa-icon [icon]="remove" (click)="  deleteTitle(i)"></fa-icon>
+          </div>
           <div class="title">{{element.Title}}</div>
           <div class="title">({{element.Year}})</div>
           <div class="genre">{{element.Genre}}</div>

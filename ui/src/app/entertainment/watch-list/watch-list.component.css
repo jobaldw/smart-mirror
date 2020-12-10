@@ -98,7 +98,6 @@ div.header-add {
     position: relative;
     float: right;
     font-size: 36px;
-
 }
 
 /* query search parameters */
@@ -188,6 +187,27 @@ div.platform {
     font-size: 14pt;
     font-weight: bold;
     text-align: center;
+}
+
+div.remove {
+    position: absolute;
+
+    top: -10%;
+    height: 0; 
+    width: 0; 
+    
+    border-top: 25px solid transparent;
+    border-bottom: 100px solid transparent;
+    border-left: 50px solid gray;
+}
+
+div.remove > fa-icon {
+    position: relative;
+    margin: -40px;
+}
+
+div.remove > fa-icon:hover {
+    color: red;
 }
 
 div.title {
@@ -360,7 +380,9 @@ div.theaters {
     background-color: black;
 }
 
- /* Global tag stlyings */
+ /*
+    Global tag stlyings 
+  */
 input:focus, select:focus {
     outline: none;
 }

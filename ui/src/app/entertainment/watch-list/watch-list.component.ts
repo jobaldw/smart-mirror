@@ -55,6 +55,21 @@ export class WatchListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  deleteTitle(int: number) {
+    this.EntertainmentService.removeTitle(this.resp.elements[int]._id)
+    .subscribe(res => {
+      this.respOMBD = res;
+    }, err => {
+      if (err.error && err.error.message) {
+        this.msg = err.error.message;
+        return;
+      }
+      this.msg = "Failed to remove OMBD titles.";
+    }, () => {
+      location.reload();
+    })
+  }
+
   addTitle(title: string) {
     this.EntertainmentService.addTitles(title, this.streamer)
     .subscribe(res => {
