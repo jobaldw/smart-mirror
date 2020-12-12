@@ -326,25 +326,23 @@ div.result-platform {
 
     top: 0%;
     bottom: 100%;
-    right: -2%;
+    left: 9%;
     height: 100%;
-    width: 93%;
+    width: 82%;
 
     display: none;
-    background-color: #000000;
+    background-color: rgba(168, 168, 168);
 }
 
 div.platforms {
     height: 100%;
-    width: 6%;
+    width: 11%;
 
     float: left;
-    padding-left: 1%;
-    padding-right: 1%;
     vertical-align: center;
 
     color: #ffffff;
-    font-size: 24px;
+    font-size: 20px;
     opacity: 50%;
     text-align: center;
 
@@ -353,7 +351,7 @@ div.platforms {
 
 div.platforms:hover {
     opacity: 100%;
-    width: 15%;
+    width: 18%;
     transition: .5 ease-in;
 }
 
@@ -361,7 +359,7 @@ div.platform-stream {
     position: relative;
     left: 0;
     height: 100%;
-    width: 100%;
+    width: 99%;
     overflow: hidden;
 }
 
@@ -370,9 +368,45 @@ div.platform-stream {
     right: -4%;
 }
 
-div.disney2 {
+img.disney {
     position: relative;
-    top: 500%;
+    top: 10%;    
+    right: 0;
+}
+
+img.hbo {
+    position: relative;
+    top: 30%;    
+    right: 1%;
+}
+
+img.hulu {
+    position: relative;
+    top: 35%;    
+    right: 2%;
+}
+
+img.netflix {
+    position: relative;
+    top: 0;    
+    right: 0;
+}
+
+img.plex {
+    position: relative;
+    top: 35%;    
+    right: 0;
+}
+
+img.prime {
+    position: relative;
+    top: -10%;    
+    right: 0;
+}
+
+img.youtube {
+    position: relative;
+    top: -10%;    
     right: 0;
 }
 
@@ -405,12 +439,12 @@ div.prime {
     background-color: #00A8E1;
 }
 
-div.youtube {
+div.prime2, div.youtube {
     color: black;
     background-color: #ffffff;
 }
 
-div.netflix2, div.hulu2, div.theaters, div.rent {
+div.netflix2, div.hulu2, div.rentBuy {
     background-color: #000000;
 }
 

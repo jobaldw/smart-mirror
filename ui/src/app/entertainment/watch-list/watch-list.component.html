@@ -35,7 +35,7 @@
             <option value="Plex">Plex</option>
             <option value="Prime Video">Prime Video</option>
             <option value="YoutubeTV">YoutubeTV</option>
-            <option value="In Theaters">Theaters</option>
+            <option value="Rent or Buy">Rent or Buy</option>
           </select>
           <!-- type checkboxes -->
           <label for="query-movie"> Movies</label>
@@ -90,40 +90,44 @@
               <div class="result-platform">
                 <div class="platforms disney" (click)="setStreamer('Disney', i)">
                   <div class="platform-stream">
-                    <img class="disney2" src="../../../assets/disney-plus.png" width="125px" height="75px"/>  
-                  </div>
-                </div>
-                <div class="platforms hbo" (click)="setStreamer('HBO Max', i)">
-                  <div class="platform-stream">
-                    <img class="stream" src="../../../assets/hbo.png" width="150px" height="100px"/>  
+                    <img class="disney" src="../../../assets/disney-plus.png" width="100px" height="60px" />
                   </div>
                 </div>
                 <div class="platforms hulu2" (click)="setStreamer('Hulu', i)">
                   <div class="platform-stream">
-                    <img class="stream" src="../../../assets/hulu.png" width="150px" height="100px"/>  
+                    <img class="hulu" src="../../../assets/hulu.png" width="75px" height="25px" />
+                  </div>
+                </div>
+                <div class="platforms hbo" (click)="setStreamer('HBO Max', i)">
+                  <div class="platform-stream">
+                    <img class="hbo" src="../../../assets/hbo.png" width="75px" height="35px" />
                   </div>
                 </div>
                 <div class="platforms netflix2" (click)="setStreamer('Netflix', i)">
                   <div class="platform-stream">
-                    <img class="stream" src="../../../assets/netflix.png" width="150px" height="100px"/>  
+                    <img class="netflix" src="../../../assets/netflix.png" width="100px" height="75px" />
+                  </div>
+                </div>
+                <div class="platforms prime2" (click)="setStreamer('Prime Video', i)">
+                  <div class="platform-stream">
+                    <img class="prime" src="../../../assets/prime.png" width="150px" height="100px" />
                   </div>
                 </div>
                 <div class="platforms plex2" (click)="setStreamer('Plex', i)">
                   <div class="platform-stream">
-                    <img class="stream" src="../../../assets/plex.png" width="150px" height="100px"/>  
-                  </div>
-                </div>
-                <div class="platforms prime" (click)="setStreamer('Prime Video', i)">
-                  <div class="platform-stream">
-                    <img class="stream" src="../../../assets/prime.png" width="150px" height="100px"/>  
+                    <img class="plex" src="../../../assets/plex.png" width="75px" height="25px" />
                   </div>
                 </div>
                 <div class="platforms youtube" (click)="setStreamer('YoutubeTV', i)">
                   <div class="platform-stream">
-                    <img class="stream" src="../../../assets/youtube.png" width="150px" height="100px"/>  
+                    <img class="youtube" src="../../../assets/youtube.png" width="150px" height="100px" />
                   </div>
                 </div>
-                <div class="platforms theaters" (click)="setStreamer('In Theaters', i)">In Theaters</div>
+                <div class="platforms rentBuy" (click)="setStreamer('Rent or Buy', i)">
+                  <div class="platform-stream">
+                    Rent<br>or<br>Buy
+                  </div>
+                </div>
               </div>
             </div>
           </div>

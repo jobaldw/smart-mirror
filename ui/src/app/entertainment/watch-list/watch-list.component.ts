@@ -164,8 +164,8 @@ export class WatchListComponent implements OnInit {
     if (this.resp.elements[int].platform == "YoutubeTV") {
         return "youtube"
     }
-    if (this.resp.elements[int].platform == "In Theaters") {
-        return "theaters"
+    if (this.resp.elements[int].platform == "Rent or Buy") {
+        return "rentBuy"
     }
     return ""
   }
@@ -177,14 +177,6 @@ export class WatchListComponent implements OnInit {
       this.adding = false
     }
   }
-  
-  // toggleStreamer(int: number) {
-  //   if (this.settingStreamer == false) {
-  //     this.settingStreamer = true
-  //   } else {
-  //     this.settingStreamer = false
-  //   }
-  // }
 
   setStreamer(value: string, int: number) {
     this.addedTitle = this.respOMBD.Search[int].Title
