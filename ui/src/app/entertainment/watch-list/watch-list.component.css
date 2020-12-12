@@ -283,8 +283,11 @@ div.search-results {
 
 /* result divs */
 div.result {
+    position: relative;
+    
     width: 101%;
 
+    float: left;
     margin-left: .125%;
     padding: .5%;
 
@@ -295,6 +298,11 @@ div.result {
 
 div.result:hover {
     background-color: rgba(168, 168, 168);
+}
+
+div.result:hover >  div.result-platform{
+    display: inline;
+    transition: 1s ease;
 }
 
 div.result-poster {
@@ -316,24 +324,20 @@ div.result-title {
 div.result-platform {
     position: absolute;
 
-    top: 52%;
+    top: 0%;
     bottom: 100%;
     right: -2%;
-    height: 32%;
-    width: 102%;
+    height: 100%;
+    width: 93%;
 
-    display: inline;
+    display: none;
     background-color: #000000;
-    overflow: scroll;
-
-    transition: .5s ease;
 }
 
 div.platforms {
     height: 100%;
-    width: 12%;
+    width: 6%;
 
-    display: inline;
     float: left;
     padding-left: 1%;
     padding-right: 1%;
@@ -349,6 +353,27 @@ div.platforms {
 
 div.platforms:hover {
     opacity: 100%;
+    width: 15%;
+    transition: .5 ease-in;
+}
+
+div.platform-stream {
+    position: relative;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.stream {
+    position: absolute;
+    right: -4%;
+}
+
+div.disney2 {
+    position: relative;
+    top: 500%;
+    right: 0;
 }
 
 /* platform background colors */
@@ -372,12 +397,21 @@ div.plex {
     background-color: #d89210;
 }
 
+div.plex2 {
+    background-color: #707070;
+}
+
 div.prime {
     background-color: #00A8E1;
 }
 
-div.theaters {
-    background-color: black;
+div.youtube {
+    color: black;
+    background-color: #ffffff;
+}
+
+div.netflix2, div.hulu2, div.theaters, div.rent {
+    background-color: #000000;
 }
 
  /*
