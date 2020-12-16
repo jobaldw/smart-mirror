@@ -1,44 +1,33 @@
-/* Notifactions Panel styling */
-.panel {
-    top: 60%;
+/* Notifactions Panel Styling Sheet */
+#pane {
+    position: absolute;
+    top: 53%;
     left: 0;
-
-    height: 30%;
+    height: 36%;
+    width: 30%; 
 }
 
-.notifications {
-    position: absolute;
-
+#notifications {
+    position: relative;
     top: 0;
     height: 100%;
     width: 100%;
-
-    margin: 0;
-    padding: 0;
         
     color: white;
-    font-family: Tahoma, Verdana, Segoe, sans-serif;
-    
     display: block;
-
     opacity: 80%;
 }
 
 div.banner {
     position: relative;
-    
+    left: 0;
     height: 25%;
     width: 96%;
-    left: 0;
-
-    margin: 3%;
+    margin: 2% 1.5%;
     padding: 1%;
 
     border-radius: 15px 15px 15px 15px;
-    -moz-border-radius: 15px 15px 15px 15px;
-    -webkit-border-radius: 15px 15px 15px 15px;
     box-shadow: 0 3px gray;
-
     cursor: pointer;
 
     transition: left 1s;
@@ -47,11 +36,9 @@ div.banner {
 
 div.bannerUnavaliable {
     position: relative;
-    
+    left: 0;
     height: 25%;
     width: 96%;
-    left: 0;
-
     margin: 3%;
     padding: 1%;
 }
@@ -75,18 +62,15 @@ div.banner:active {
 
 div.banner:hover {
     left: 10%;
-
     transition: left 1s;
 }
 
 div.provider {
     position:  relative;
-
     top: 5%;
     left: 2%;
     height: 25%;
     width: 50%;
-    
     float: left;
 
     font-size: 16px;
@@ -95,12 +79,10 @@ div.provider {
 
 div.timestamp {
     position: relative;
-
     top: 5%;
     right: 3%;
     height: 25%;
     width: 50%;
-
     padding: 0%;
     float: right;
 
@@ -112,10 +94,8 @@ div.timestamp {
 
 div.message {
     position: relative;
-    
     top: 12%;
     left: 1.5%;
-
     float: left;
 
     font-size: 18px;
@@ -125,11 +105,7 @@ div.message {
 div.content {  
     top: 0%;
     width: 98%;
-
     overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
     text-overflow: ellipsis;
     text-transform: none;
 }
@@ -138,9 +114,8 @@ div.unavaliable {
     width: 100%;
     margin-top: 10%;
 
+    cursor: default;
     font-style: italic;
     font-size: 20px;
     font-weight: 500;
-
-    cursor: default;
 }

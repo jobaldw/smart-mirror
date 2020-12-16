@@ -1,12 +1,11 @@
 * {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Cantarell";
 }
    
-.panel {
+body {
     position: absolute;
-
-    height: 25%;
-    width: 25%;
-
-    margin: 25px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: grey;
 }

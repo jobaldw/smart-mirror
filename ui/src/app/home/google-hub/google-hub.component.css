@@ -1,21 +1,20 @@
-/* Google Hub Panel styling */
-.panel {
-    top: 60%;
-    right: 0;
+/* Google Hub Panel Styling Sheet */
+#pane {
+    position: absolute;
+    top: 53%;
+    right: 1%;
+    height: 36%;
+    width: 30%; 
+
+    background: rgba(255,255,255,0.10);
+    border-radius: 20px;
+    box-shadow: 10px 10px 15px 0px rgba(0,0,0,0.25); 
+    -webkit-box-shadow: 10px 10px 15px 0px rgba(0,0,0,0.5); 
 }
 
-.hub {
+#hub {
     position: absolute;
-
     top: 0;
     height: 100%;
     width: 100%;
-
-    margin: 0;
-    padding: 0;
-        
-    color: white;
-    font-family: Tahoma, Verdana, Segoe, sans-serif;
-    
-    opacity: 80%;
 }

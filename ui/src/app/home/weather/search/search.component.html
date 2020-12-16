@@ -1,7 +1,7 @@
-<div class="search">
+<div id="search">
     <form (ngSubmit)='search(searchForm)' #searchForm='ngForm'>
         <div id="formField">
-                <input type="text" value="Saint Louis" autocomplete="off" [(ngModel)]='loc' #lo='ngModel' name='lo' required>
+                <input type="text" placeholder="Saint Louis" value="Saint Louis" autocomplete="off" [(ngModel)]='loc' #lo='ngModel' name='lo' required>
             <div *ngIf="lo.invalid && (lo.dirty || lo.touched)"></div>
         </div>
     </form>

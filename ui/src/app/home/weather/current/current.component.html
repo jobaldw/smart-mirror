@@ -1,15 +1,25 @@
-<div id="unavailable" *ngIf='!resultFound()'>
-  city data unavailable: <br> {{msg}}
-</div>
-
-<div id="currently" *ngIf='resultFound()'>
-  <div id="extras">
-      <div title="high" id="high"><fa-icon [icon]="faTemperatureHigh"></fa-icon>   {{currentWeather.main?.temp_max | number:'1.0-0'}}</div>
-      <div title="low" id="low"><fa-icon [icon]="faTemperatureLow"></fa-icon>   {{currentWeather.main?.temp_min | number:'1.0-0'}}</div>
-      <div title="humidity" id="humidity"><fa-icon [icon]="faWater"></fa-icon>   {{currentWeather.main?.humidity}}</div>
-      <div title="chance of rain" id="rain"><fa-icon [icon]="faCloudRain"></fa-icon>   {{rain}}</div>
+<div id="current">
+  <!-- if -->
+  <div id="unavailable" *ngIf='!resultFound()'>
+    city data unavailable: <br> {{msg}}
   </div>
-  <div title="today's temperature" id="temperature">{{currentWeather.main?.temp | number:'1.0-0'}}&#730;</div>
-  <div title="today's forecast" id="forecast">{{currentWeather.weather[0]?.main}}</div>
-  <div title="today's description" id="description">{{currentWeather.weather[0]?.description}}</div>
+  <!-- else -->
+  <div id="available" *ngIf='resultFound()'>
+    <div id="temperature">
+      <p id="degree">{{currentWeather.main?.temp | number:'1.0-0'}}&#730;</p>
+      <p id="icon"><fa-icon [icon]="icon"></fa-icon></p>
+    </div>
+    <div id="forecast" title="forecast">{{currentWeather.weather[0]?.main}}</div>
+    <div id="descriptions">
+      <div title="chance of rain">
+        Percepitation {{rain}}%
+      </div>
+      <div title="humidity">
+        Humidity {{currentWeather.main?.humidity}}%
+      </div>
+      <div title="wind velocity">
+        Wind {{currentWeather.wind?.speed | number:'1.0-0'}} mph
+      </div>
+    </div>
+  </div>
 </div>

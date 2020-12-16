@@ -1,70 +1,58 @@
-/* Clock Panel styling */
-.panel {
+/* Clock Component Styling Sheet */
+#pane {
+    position: absolute;
     top: 0;
-    right: 0;
+    left: 0;
+    height: 25%;
+    width: 30%; 
 }
 
-.clock {
-    position: absolute;
-
-    top: 0;
-    height: 100%;
-    width: 100%;
-
+#clock {
+    position: relative;
+    height: 96%;
+    width: 60%;
     margin: 0;
-    padding: 0;
-        
+    padding: 1%;
+
     color: white;
-    font-family: Tahoma, Verdana, Segoe, sans-serif;
-
     cursor: default;
-
     opacity: 80%;
 }
 
 div#date {
-    position: absolute;
-
-    bottom: 15%;
-    height: 30%;
+    position: relative;
+    height: 15%;
     width: 100%;
-
-    margin: auto;
-
-    font-family: 'Work Sans', sans-serif;
-    font-size: 22px;
-    font-weight: 300;
-    text-align: center;
-    
+    padding: 1% 0;
 }
 
-div#date > div {
-    position: absolute;
-
-    top: 0;
-    height: 80%;
+div#date > p {
+    position: relative;
+    height: 100%;
     width: 100%;
+    bottom: 25%;
+
+    font-size: 24px;
+    font-weight: 100;
+    line-height: 25%;
+    text-align: center;
 }
 
 div#time {
-    position: absolute;
-
-    top: 12%;
-    height: 70%;
+    position: relative;
+    height: 35%;
     width: 100%;
-
-    margin: auto;
-
-    font-size: 750%; /* font-size: 144px; */
-    font-weight: 100;
-    text-align: center;
-
+    padding: 1% 0;
 }
 
-div#time > div {
-    position: absolute;
-
-    bottom: 0;
+div#time > p {
+    position: relative;
     height: 100%;
     width: 100%;
+    top: -108%;
+    
+    font-size: 112px;
+    font-weight: 100;
+    line-height: 40%;
+    text-align: center;
 }

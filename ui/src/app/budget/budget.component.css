@@ -1,0 +1,106 @@
+/* Budget CSS Styling Sheet */
+#pane {
+    position: absolute;
+    top: 0%;
+    left: 0;
+    height: 93%;
+    width: 100%;
+
+    /* background-color: darkgreen; */
+}
+
+.budget {
+    position: relative;
+
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    display: block;
+    margin: 0;
+    padding: 1%;
+        
+    color: white;
+    cursor: default;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    opacity: 80%;
+}
+
+div.header {
+    position: relative;
+    
+    top: 0;
+    left: 0; 
+    height: 4%;
+    width: 98%;
+
+    padding: 1%;
+    z-index: 2;
+
+    background-color: #000000;
+}
+
+div.header-title{
+    float: left;
+    font-size: 36px;
+}
+
+div.header-budget{
+    height: 100%;
+}
+
+div.header-budget:hover {
+    color: rgb(130, 130, 130);;
+}
+
+div.header-budgets {
+    border-left: rgb(130, 130, 130) 1px solid;
+    float: right;
+    font-size: 28px;
+    height: 100%;
+    padding-top: .25%;
+    padding-left: 1%;
+}
+
+div.header-budgets:hover > div.budgets {
+    top: 100%;
+    opacity: 100%;
+}
+
+div.budgets {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 7.75%;
+    opacity: 0;
+    z-index: -1;
+    background-color: rgba(168, 168, 168);
+    color: #ffffff;
+}
+
+div.budgets-name {
+    height: 50%;
+    padding: 5%;
+    background-color: #000000;
+    text-align: center;
+    border-top: rgb(130, 130, 130) 1px solid;
+}
+
+div.budgets-name:hover {
+    color: rgb(130, 130, 130);
+}
+
+div.body {
+    position: relative;
+    
+    height: 84%;
+    width: 98%;
+    left: 0;
+
+    top: 1%;
+    float: left;
+    padding: 1%;
+}

@@ -1,7 +1,13 @@
 /* Current weather styling */
+#current {
+    position: relative;
+    top: 0;
+    height: 40%;
+    width: 100%;
+}
+
 div#unavailable {
     position: absolute;
-
     top: 25%;
     height: 25%;
     width: 100%;
@@ -10,94 +16,80 @@ div#unavailable {
     text-align: center;
 }
 
-div#currently {
-    position: absolute;
-
-    top: 12%;
-    height: 50%;
+div#available {
+    position: relative;
+    height: 100%;
     width: 100%;
 }
 
-div#currently > div {
-    position: absolute;
+div#temperature {
+    position: relative;
+    float: right;
+    right: 0;
+    height: 45%;
+    width: 50%;
+
+    font-size: 84px;
+    text-align: right;
+    line-height: 100%;
 }
 
-div#temperature {
-    top: 0;
+p#degree {
+    position: relative;
+    top: -94%;
+    float: right;
+    right: 0;
     height: 100%;
     width: 50%;
 
-    font-size: 108px;
+    font-size: 84px;
     text-align: center;
 }
 
+p#icon {
+    position: relative;
+    top: -34%;
+    float: right;
+    left: 0;
+    height: 100%;
+    width: 50%;
+
+    font-size: 30px;
+}
+
+fa-icon {
+    position: relative;
+    text-align: center;
+    float: left;
+    left: 25%;
+    text-align: center;
+    font-size: 60px;
+}
+
 div#forecast {
+    position: relative;
     top: 0;
     right: 0;
     height: 25%;
     width: 50%;
 
     font-size: 30px;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
 }
 
-div#description {
-    top: 25%;
+div#descriptions {
+    position: relative;
     right: 0;
-    height: 50%;
+    height: 45%;
     width: 50%;
 
     font-size: 20px;
     font-weight: 100;
-    font-style: italic;
+    font-style: italic;    
 }
 
-/* Extra current weather styling */
-div#extras {
-    bottom: 0;
-    right: 5%;
-    
-    height: 25%;
-    width: 100%;
-
-    font-size: 18px;
-    font-weight: 500px;
-    z-index: 1;
-}
-
-div#high {
-    position: absolute;
-
-    right: 240px;
-
-    color: #DB4437;
-}
-
-div#low {
-    position: absolute;
-
-    right: 160px;
-
-    color: #4285F4;
-}
-
-div#humidity {
-    position: absolute;
-
-    right: 80px;
-
-    color: #ffffff;
-}
-
-div#rain {
-    position: absolute;
-
-    right: 0;
-
-    color: gray;
-}
-
-div#rain:after {
-    content: '\0025';
+div#descriptions > div {
+    position: relative;
+    font-weight: 500;
 }

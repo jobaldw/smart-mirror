@@ -1,49 +1,40 @@
-/* Calendar Panel styling */
-.panel {
-    top: 27.5%;
-    right: 0;
-
-    height: 32%;
+/* Calendar Panel Styling Sheet */
+#pane {
+    position: absolute;
+    top: 15%;
+    left: 0;
+    height: 36%;
+    width: 30%; 
 }
 
-.calendar {
-    position: absolute;
-
+#calendar {
+    position: relative;
     top: 0;
     height: 100%;
     width: 100%;
-
-    margin: 0;
-    padding: 0;
         
-    color: white;
-    font-family: Tahoma, Verdana, Segoe, sans-serif;
-    
+    color: white;    
     opacity: 80%;
     overflow: scroll;
 }
 
 div.banner {
     position: relative;
-        
+    left: 0;
     height: 30%;
     width: 95%;
-    left: 0;
-
+    margin-top: 1%;
     margin-left: 3%;
     margin-right: 3%;
-    margin-top: 1%;
     padding: 1%;
 
     cursor: default;
-
     transition: 0.5s;
     transition: color 0.5s;
 }
 
 div.banner:hover {
     color: black;
-
     transition: color 0.5s;
 }
 
@@ -53,12 +44,10 @@ div.banner:hover div.status{
 
 div.time {
     position: relative;
-
     top: 6%;
     left: 5%;
     height: 100%;
     width: 25%;
-
     padding: 0%;
     float: left;
 
@@ -71,33 +60,25 @@ div.timestamp {
 }
 
 div.duration {
-    padding-top: 4%;
-    
     color: grey;
-
     font-size: 16px;
+    padding-top: 4%;
 }
 
 div.status {
     position: absolute;
-
     top: 0;
     right: 95%;
     height: 100%;
     width: 1.5%;
-        
     float: left;
 
     background-color: #DB4437;
     color: #e6e6e6;
-
     overflow: hidden;
 
     transition: background-color 0.5s;
     transition: width 1s;
-    -webkit-transition: width 1s;
-
-    z-index: 1;
 }
 
 div.status:hover {
@@ -106,40 +87,31 @@ div.status:hover {
 
 div.user {
     position: relative;
-
+    top: 32%;
+    left: 38px;
     height: 35px;
     width: 35px;
 
-    top: 32%;
-    left: 28px;
-
-    background-color: #DB4437;
     color: #e6e6e6;
-
+    background-color: #DB4437;
     border-radius: 30px 30px 30px 30px;
-    -moz-border-radius: 30px 30px 30px 30px;
-    -webkit-border-radius: 30px 30px 30px 30px;
-
     font-size: 20px;
-    text-align: center;
     line-height: 200%;
+    text-align: center;
 }
 
 div.content {
     position: relative;
-
     top: 0;
     left: 3%;
     height: 100%;
     width: 70%;
-
     padding: 0%;
     float: left;
 }
 
 div.summary {
     padding: 1%;
-
     font-size: 18px;
 }
 
@@ -148,7 +120,6 @@ div.location {
     padding-top: 2%;
     
     color: grey;
-
-    font-style: italic;
     font-size: 14px;
+    font-style: italic;
 }

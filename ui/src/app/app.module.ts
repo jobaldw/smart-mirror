@@ -33,14 +33,16 @@ import { ClockComponent } from './home/clock/clock.component';
 import { CurrentComponent } from './home/weather/current/current.component';
 import { ForecastComponent } from './home/weather/forecast/forecast.component';
 import { NotificationsComponent } from './home/notifications/notifications.component';
-import { SearchComponent } from './home/weather/current/search/search.component';
+import { SearchComponent } from './home/weather/search/search.component';
 import { WeatherComponent } from './home/weather/weather.component';
-import { WelcomeComponent } from './home/welcome/welcome.component';
 
 // page not found component
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { GoogleHubComponent } from './home/google-hub/google-hub.component';
+import { BudgetComponent } from './budget/budget.component';
+import { SavingsComponent } from './budget/savings/savings.component';
+import { OverviewComponent } from './budget/overview/overview.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { GoogleHubComponent } from './home/google-hub/google-hub.component';
     WatchListComponent,
     SearchComponent,
     WeatherComponent,
-    WelcomeComponent,
+    BudgetComponent,
+    SavingsComponent,
+    OverviewComponent,
   ],
   imports: [
     AppRoutingModule,

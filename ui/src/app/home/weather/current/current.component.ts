@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { WeatherService } from '../../../services/weather/weather.service';
 
-import { faCloudRain, faTemperatureLow, faTemperatureHigh, faWater } from '@fortawesome/free-solid-svg-icons';
+import { faSun, faCloudSun, faCloud,  faCloudRain, faCloudSunRain, faCloudShowersHeavy, faSnowflake, faTemperatureLow, faTemperatureHigh, faWater, faQuestion, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-current',
@@ -22,6 +22,8 @@ export class CurrentComponent implements OnInit {
   currentWeather: any = <any>{};
   rain: any = <any>{};
   msg: string;
+  icon: IconDefinition;
+  dayIcon: string;
 
   constructor(
     private store: Store<any>,
@@ -54,6 +56,25 @@ export class CurrentComponent implements OnInit {
         } else {
           this.rain = 0;
         }
+
+        this.dayIcon = this.currentWeather.weather[0].icon;
+          if (this.dayIcon == "01n") {
+            this.icon = faSun;
+          } else if (this.dayIcon == "02n") {
+            this.icon = faCloudSun;
+          } else if (this.dayIcon == "03n" || this.dayIcon == "04n") {
+            this.icon = faCloud;
+          } else if (this.dayIcon == "09n") {
+            this.icon = faCloudRain;
+          } else if (this.dayIcon == "10n") {
+            this.icon = faCloudSunRain;
+          } else if (this.dayIcon == "11n") {
+            this.icon = faCloudShowersHeavy;
+          } else if (this.dayIcon == "13n") {
+            this.icon = faSnowflake;
+          } else {
+            this.icon = faQuestion;
+          }
       })
   }
 

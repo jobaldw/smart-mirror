@@ -64,7 +64,7 @@ li a#entertainment {
     left: 38%;
 }
 
-li a#music {
+li a#budget {
     left: 43%;
 }
 
@@ -99,7 +99,7 @@ a#entertainment:hover  {
     color: #4285F4;
 }
 
-a#music:hover  {
+a#calendar:hover  {
     color: #DB4437;
 }
 
@@ -107,7 +107,7 @@ a#news:hover  {
     color: #F4B400;
 }
 
-a#calendar:hover  {
+a#budget:hover  {
     color: #0F9D58;
 }
 

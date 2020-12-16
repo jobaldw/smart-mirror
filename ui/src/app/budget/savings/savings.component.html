@@ -1,0 +1,12 @@
+<div id="title">
+    {{title}}
+</div>
+<div class="progress-bar-container">
+    <div class="progress-bar {{color}}" [ngStyle]="{'width': (100 - progress) + '%'}">
+        <div id="current">
+            ${{current}}
+        </div>
+    </div>
+</div>
+<div class="values" id=start>$0</div>
+<div class="values" id=goal>${{total}}</div>

@@ -1,0 +1,50 @@
+#title {
+    height: 20%;
+    line-height: 300px;
+    width: 100%;
+    font-size: 84px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.75);}
+
+.progress-bar-container {
+    margin-top: 10%;
+    background: linear-gradient(90deg, rgba(152,0,0,1) 0%, rgba(255,248,64,1) 50%, rgba(21,158,22,1) 100%);    
+    height: 25%;
+    border-radius: 100px;
+    -webkit-box-shadow: 10px 10px 15px 0px rgba(0,0,0,0.5); 
+    box-shadow: 10px 10px 15px 0px rgba(0,0,0,0.5);
+}
+
+ .progress-bar {    
+    height: 100%;
+    width: 25%;
+    float: right;
+    border-radius: 0 100px 100px 0;
+    background: rgb(130, 130, 130);
+ }
+
+ #current {
+     font-size: 60px;
+     font-weight: bold;
+     line-height: 200px;
+     text-align: left;
+     padding-left: 1%;
+     text-shadow: 2px 2px 5px rgba(0,0,0,0.75);
+ }
+
+ .values {
+    line-height: 100px;
+    height: 100%;
+    font-size: 48px;
+    font-weight: bold;
+    opacity: 40%;
+ }
+
+ #start {
+    float: left;
+ }
+
+ #goal {
+    float: right;
+ }

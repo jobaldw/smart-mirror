@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faHome, faTv, faMusic, faNewspaper, faCalendar, faEllipsisH, faTools } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faTv, faFileInvoiceDollar, faNewspaper, faCalendar, faEllipsisH, faTools } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-navigation-bar',
@@ -9,7 +9,7 @@ import { faHome, faTv, faMusic, faNewspaper, faCalendar, faEllipsisH, faTools } 
 export class NavigationBarComponent implements OnInit {
   faHome = faHome;
   faTv = faTv;
-  faMusic = faMusic;
+  faFileInvoiceDollar = faFileInvoiceDollar;
   faNewspaper = faNewspaper;
   faCalendar = faCalendar;
   faEllipsisH = faEllipsisH;

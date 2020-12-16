@@ -1,0 +1,46 @@
+/* Search Panel styling */
+#search {
+    position: relative;
+    top: -22.25%;
+    float: right;
+    height: 7%;
+    width: 50%;
+    margin: 0;
+    padding: 1% 0;
+
+    opacity: 80%;
+    cursor: text;
+}
+
+form {
+    position: relative;
+    height: 100%;
+    width: 98%;
+    padding: 0 1%;
+
+    display: inline-block;
+    text-align: center;
+}
+
+input {
+    position: relative;
+    left: 0;
+    height: 100%;
+    width: 85%;
+    margin: auto;
+
+    background:none;
+    border: none;
+    color: #ffffff;
+    font-size: 32px;
+    opacity: 100%;
+    text-align: center;
+}
+
+::placeholder {
+    color: #ffffff;
+}
+
+input:focus {
+    outline: none;
+}

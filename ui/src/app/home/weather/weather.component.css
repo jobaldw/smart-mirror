@@ -1,25 +1,20 @@
-/* Weather Panel styling */
-.panel {
-    top: 27.5%; /* top: 250px; */
-    left: 0;
-
-    height: 30%;
+/* Weather Panel Styling Sheet */
+#pane {
+    position: absolute;
+    top: 0;
+    right: 1%;
+    height: 50%;
+    width: 30%;
 }
 
-.weather {
-    position: absolute;
-
-    top: 0;
-    height: 100%;
-    width: 100%;
-
+#weather {
+    position: relative;
+    height: 96%;
+    width: 98%;
     margin: 0;
-    padding: 0;
-        
-    color: white;
-    font-family: Tahoma, Verdana, Segoe, sans-serif;
-    
-    cursor: default;
+    padding: 1%;
 
+    color: white;
+    cursor: default;
     opacity: 80%;
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { SET_LOCATION } from '../../../../location-reducer';
+import { SET_LOCATION } from '../../../location-reducer';
 import { NgForm } from '@angular/forms';
 
 @Component({
