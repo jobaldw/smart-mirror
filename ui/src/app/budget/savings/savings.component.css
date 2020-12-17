@@ -1,50 +1,56 @@
-#title {
-    height: 20%;
-    line-height: 300px;
-    width: 100%;
-    font-size: 84px;
-    font-weight: bold;
-    text-align: center;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.75);}
-
-.progress-bar-container {
-    margin-top: 10%;
-    background: linear-gradient(90deg, rgba(152,0,0,1) 0%, rgba(255,248,64,1) 50%, rgba(21,158,22,1) 100%);    
-    height: 25%;
-    border-radius: 100px;
-    -webkit-box-shadow: 10px 10px 15px 0px rgba(0,0,0,0.5); 
-    box-shadow: 10px 10px 15px 0px rgba(0,0,0,0.5);
+#pane {
+   position: relative;
+   top: 0;
+   height: 95%;
+   width: 10%;
+   float: left;
 }
 
- .progress-bar {    
-    height: 100%;
-    width: 25%;
-    float: right;
-    border-radius: 0 100px 100px 0;
-    background: rgb(130, 130, 130);
- }
+.progress-bar-container {
+   position: relative;
+   height: 85%;
+   width: 70%;
+   left: 15%;
+   
+   background: linear-gradient(360deg, rgba(152, 0, 0, 1) 0%, rgba(255, 248, 64, 1) 50%, rgba(21, 158, 22, 1) 100%);
+   border-radius: 75px;
+   box-shadow: 10px 10px 15px 0px rgba(0, 0, 0, 0.5);
+}
 
- #current {
-     font-size: 60px;
-     font-weight: bold;
-     line-height: 200px;
-     text-align: left;
-     padding-left: 1%;
-     text-shadow: 2px 2px 5px rgba(0,0,0,0.75);
- }
+.progress-bar {
+   width: 100%;
+   border-radius: 75px 75px 0 0;
+   background: rgb(130, 130, 130);
+}
 
- .values {
-    line-height: 100px;
-    height: 100%;
-    font-size: 48px;
-    font-weight: bold;
-    opacity: 40%;
- }
+div#current-container {
+   position: relative;
+   height: 25%;
+   bottom: -100%;
+}
 
- #start {
-    float: left;
- }
+p#current {
+   height: 10%;
+   bottom: 1%;
 
- #goal {
-    float: right;
- }
+   font-size: 30px;
+   font-weight: bold;
+   line-height: -50%;
+   text-align: center;
+   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.75);
+}
+
+.values {
+   font-size: 36px;
+   font-weight: bold;
+   text-align: center;
+   opacity: 40%;
+}
+
+#start {
+   bottom: 0;
+}
+
+#goal {
+   top: 0;
+}

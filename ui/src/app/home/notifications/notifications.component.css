@@ -16,6 +16,7 @@
     color: white;
     display: block;
     opacity: 80%;
+
 }
 
 div.banner {
@@ -34,13 +35,15 @@ div.banner {
     transition: background-color 1s;
 }
 
-div.bannerUnavaliable {
+div.unavaliable {
     position: relative;
     left: 0;
     height: 25%;
     width: 96%;
-    margin: 3%;
+    margin: 2% 1.5%;
     padding: 1%;
+
+    cursor: default;
 }
 
 div.banner#news {
@@ -92,7 +95,7 @@ div.timestamp {
     text-align: right;
 }
 
-div.message {
+div.message, div.unavaliable > p {
     position: relative;
     top: 12%;
     left: 1.5%;
@@ -108,14 +111,4 @@ div.content {
     overflow: hidden;
     text-overflow: ellipsis;
     text-transform: none;
-}
-
-div.unavaliable {  
-    width: 100%;
-    margin-top: 10%;
-
-    cursor: default;
-    font-style: italic;
-    font-size: 20px;
-    font-weight: 500;
 }

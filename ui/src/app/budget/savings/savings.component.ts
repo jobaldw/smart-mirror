@@ -15,7 +15,7 @@ export class SavingsComponent implements OnInit {
 
   constructor() { 
     this.title = "First Home Down Payment Goal"
-    this.current = 7000
+    this.current = 10000
     this.progress = this.current
     this.total = 20000
   }

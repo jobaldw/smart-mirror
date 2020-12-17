@@ -1,36 +1,32 @@
 <div id="pane">
     <div id="notifications">
-        <div class="bannerUnavaliable" *ngIf='!newsFound()'>
-            <div class="provider"></div>
-            <div class="timestamp"></div>
-            <div class="message">
-                <div class="unavaliable">No US news at this time</div>
-            </div>
+        <div class="unavaliable" *ngIf='!newsFound()'>
+            <p>No US news at this time</p>
         </div>
-        <div class="banner" id="news" (click)="nextNews()" title={{news.articles[newsCount].description}} *ngIf='newsFound()'>
+        <div class="banner" id="news" (click)="nextNews()" title={{news.articles[newsCount].description}}
+            *ngIf='newsFound()'>
             <div class="provider">{{newsOutlet}}</div>
             <div class="timestamp">{{news.articles[newsCount].publishedAt | date:'shortTime'}}</div>
             <div class="message">
                 <div class="content">{{news.articles[newsCount].title}}</div>
             </div>
         </div>
-        <div class="bannerUnavaliable" *ngIf='!sportsFound()'>
-            <div class="message">
-                <div class="unavaliable">No sports news at this time</div>
-            </div>
+        <div class="unavaliable" *ngIf='!sportsFound()'>
+            <p>No Sports news at this time</p>
         </div>
-        <div class="banner" id="sports" (click)="nextSports()" title={{sports.articles[sportsCount].description}} *ngIf='sportsFound()'>
+        <div class="banner" id="sports" (click)="nextSports()" title={{sports.articles[sportsCount].description}}
+            *ngIf='sportsFound()'>
             <div class="provider">{{sportsOutlet}}</div>
             <div class="timestamp">{{sports.articles[sportsCount].publishedAt | date:'shortTime'}}</div>
             <div class="message">
                 <div class="content">{{sports.articles[sportsCount].title}}</div>
             </div>
         </div>
-        <div class="bannerUnavaliable" *ngIf='!techFound()'>
-            <div class="message">
-                <div class="unavaliable">No tech news at this time</div>
-            </div>        </div>
-        <div class="banner" id="tech" (click)="nextTech()" title={{tech.articles[techCount].description}} *ngIf='techFound()'>
+        <div class="unavaliable" *ngIf='!techFound()'>
+            <p>No Tech news at this time</p>
+        </div>
+        <div class="banner" id="tech" (click)="nextTech()" title={{tech.articles[techCount].description}}
+            *ngIf='techFound()'>
             <div class="provider">{{techOutlet}}</div>
             <div class="timestamp">{{tech.articles[techCount].publishedAt | date:'shortTime'}}</div>
             <div class="message">
