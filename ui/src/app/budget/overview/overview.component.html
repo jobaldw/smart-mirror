@@ -1,7 +1,146 @@
 <div id=pane>
     <div id="totals">
-        <div class="total-category" id="income"></div>
-        <div class="total-category" id="expense"> </div>
-        <div class="total-category" id="saving"> </div>
+        <div class="total-category total-income">
+            <p class="total-header">Income</p>
+            <p class="total-percentage">30%</p>
+            <p class="total-net">$325.00</p>
+            <p class="total-gross">$3500.00</p>
+        </div>
+        <div class="total-category total-expense">
+            <p class="total-header">Expense</p>
+            <p class="total-percentage">50%</p>
+            <p class="total-net">$1000.00</p>
+            <p class="total-gross">$1000.00</p>
+        </div>
+        <div class="total-category total-savings">
+            <p class="total-header">Saving</p>
+            <p class="total-percentage">20%</p>
+            <p class="total-net">$250.00</p>
+            <p class="total-gross">$500.00</p>
+        </div>
+    </div>
+    <div id="breakdown">
+        <div id="divider">
+            <p>Breakdown</p>
+        </div>
+        <div class="breakdown-category breakdown-income">
+            <div class="breakdown-element">
+                <div class="element-header">Paycheck</div>
+                <div class="element-record">
+                    <p class="record-description">Bi-Weekly Cenetene</p>
+                    <p class="record-ratio">26%</p>
+                    <p class="record-debit">$3800.00</p>
+                </div>
+                <div class="element-record">
+                    <p class="record-description">Tax Deductions</p>
+                    <p class="record-ratio">10%</p>
+                    <p class="record-credit">$800.00</p>
+                </div>
+                <div class="element-record">
+                    <p class="record-description">Benefit Deductions</p>
+                    <p class="record-ratio">3%</p>
+                    <p class="record-credit">$78.00</p>
+                </div>
+                <div class="element-record bold">
+                    <p class="record-description" [ngStyle]="{'text-align':'right'}">total</p>
+                    <p class="record-ratio">20%</p>
+                    <p class="record-credit">$1150.00</p>
+                </div>
+            </div>
+            <div class="breakdown-element">
+                <div class="element-header">Tax Deductions</div>
+                <div class="element-record">
+                    <p class="record-description">Federal Income</p>
+                    <p class="record-ratio">15%</p>
+                    <p class="record-credit">$466.00</p>
+                </div>
+                <div class="element-record">
+                    <p class="record-description">Medicare</p>
+                    <p class="record-ratio">1.5%</p>
+                    <p class="record-credit">$43.00</p>
+                </div>
+                <div class="element-record">
+                    <p class="record-description">Social Services</p>
+                    <p class="record-ratio">6%</p>
+                    <p class="record-credit">$185.00</p>
+                </div>
+                <div class="element-record">
+                    <p class="record-description">Missouri State Income</p>
+                    <p class="record-ratio">4%</p>
+                    <p class="record-credit">$128</p>
+                </div>
+                <div class="element-record">
+                    <p class="record-description">St. Louis City</p>
+                    <p class="record-ratio">1%</p>
+                    <p class="record-credit">$30.00</p>
+                </div>
+                <div class="element-record bold">
+                    <p class="record-description" [ngStyle]="{'text-align':'right'}">total</p>
+                    <p class="record-ratio">26%</p>
+                    <p class="record-credit">$855.00</p>
+                </div>
+            </div>
+            <div class="breakdown-element">
+                <div class="element-header">Benefit Deductions</div>
+                <div class="element-record">
+                    <p class="record-description">Medical</p>
+                    <p class="record-ratio">2%</p>
+                    <p class="record-credit">$60.00</p>
+                </div>
+                <div class="element-record">
+                    <p class="record-description">Dental</p>
+                    <p class="record-ratio">1%</p>
+                    <p class="record-credit">$5.00</p>
+                </div>
+                <div class="element-record">
+                    <p class="record-description">Vision</p>
+                    <p class="record-ratio">1%</p>
+                    <p class="record-credit">$4.00</p>
+                </div>
+                <div class="element-record bold">
+                    <p class="record-description" [ngStyle]="{'text-align':'right'}">total</p>
+                    <p class="record-ratio">4%</p>
+                    <p class="record-credit">$69.00</p>
+                </div>
+            </div>
+        </div>
+        <div class="breakdown-category breakdown-expense">
+            <div class="breakdown-element">
+                <div class="element-header">Rent</div>
+                <div class="element-record">
+                    <p class="record-description">4400 Manchester 306</p>
+                    <p class="record-ratio">15%</p>
+                    <p class="record-debit">$900.00</p>
+                </div>
+                <div class="element-record">
+                    <p class="record-description">720 Olive Street</p>
+                    <p class="record-ratio">5%</p>
+                    <p class="record-credit">$250.00</p>
+                </div>
+                <div class="element-record bold">
+                    <p class="record-description" [ngStyle]="{'text-align':'right'}">total</p>
+                    <p class="record-ratio">20%</p>
+                    <p class="record-credit">$1150.00</p>
+                </div>
+            </div>
+            <div class="breakdown-element">
+                <div class="element-header">Insurnace</div>
+                <div class="element-record">
+                    <p class="record-description">Car</p>
+                    <p class="record-ratio">3%</p>
+                    <p class="record-debit">$110.00</p>
+                </div>
+                <div class="element-record bold">
+                    <p class="record-description" [ngStyle]="{'text-align':'right'}">total</p>
+                    <p class="record-ratio">20%</p>
+                    <p class="record-credit">$1150.00</p>
+                </div>
+            </div>
+        </div>
+        <div class="breakdown-category breakdown-savings">
+            <p class="title">Saving</p>
+            <p class="percentage">20%</p>
+            <p class="amount">$250.00</p>
+        </div>
     </div>
 </div>
