@@ -2,145 +2,206 @@
     <div id="totals">
         <div class="total-category total-income">
             <p class="total-header">Income</p>
-            <p class="total-percentage">30%</p>
-            <p class="total-net">$325.00</p>
-            <p class="total-gross">$3500.00</p>
+            <p class="total-percentage">{{(((check*2)/(check*2))*100) - ((uTotal + nTotal)/(check*2)*100) - (((sTotal +
+                gTotal + (iTotal*2) + (jTotal*2)))/(check*2)*100) | number:
+                '.1-2'}}%</p>
+            <p class="total-net">{{check*2 - (uTotal + nTotal) - (sTotal + gTotal + (iTotal*2) + (jTotal*2)) |
+                currency}}</p>
+            <p class="total-gross">{{check*2 | currency}}</p>
         </div>
         <div class="total-category total-expense">
             <p class="total-header">Expense</p>
-            <p class="total-percentage">50%</p>
-            <p class="total-net">$1000.00</p>
-            <p class="total-gross">$1000.00</p>
+            <p class="total-percentage">{{(uTotal + nTotal)/(check*2)*100 | number: '.1-2'}}%</p>
+            <p class="total-net">{{nTotal + uTotal| currency}}</p>
+            <p class="total-gross expense">{{nTotal | currency}} + {{uTotal | currency}}</p>
         </div>
         <div class="total-category total-savings">
             <p class="total-header">Saving</p>
-            <p class="total-percentage">20%</p>
+            <p class="total-percentage">{{((sTotal + gTotal + (iTotal*2) + (jTotal*2)))/(check*2)*100 | number:
+                '.1-2'}}%</p>
             <p class="total-net">$250.00</p>
-            <p class="total-gross">$500.00</p>
+            <p class="total-gross">{{sTotal + gTotal + (iTotal*2) + (jTotal*2) | currency}}</p>
         </div>
     </div>
     <div id="breakdown">
         <div id="divider">
-            <p>Breakdown</p>
+            <div id="budgets" *ngIf="budgetId == '5fdca740fa4d94ae49bd5e68'">
+                <p class="selected" (click)="selectBudget('5fdca740fa4d94ae49bd5e68')">JB</p>
+                <p (click)="selectBudget('5fdfa39a5a368428e16cf1bd')">KK</p>
+            </div>
+            <div id="budgets" *ngIf="budgetId == '5fdfa39a5a368428e16cf1bd'">
+                <p (click)="selectBudget('5fdca740fa4d94ae49bd5e68')">JB</p>
+                <p class="selected" (click)="selectBudget('5fdfa39a5a368428e16cf1bd')">KK</p>
+            </div>
+            <p>{{salary | currency}} Breakdown Per Month </p>
         </div>
         <div class="breakdown-category breakdown-income">
             <div class="breakdown-element">
                 <div class="element-header">Paycheck</div>
                 <div class="element-record">
-                    <p class="record-description">Bi-Weekly Cenetene</p>
-                    <p class="record-ratio">26%</p>
-                    <p class="record-debit">$3800.00</p>
+                    <p class="record-description">Bi Weekly Check</p>
+                    <p class="record-ratio">100%</p>
+                    <p class="record-debit">{{salary/26 | currency}}</p>
                 </div>
                 <div class="element-record">
-                    <p class="record-description">Tax Deductions</p>
-                    <p class="record-ratio">10%</p>
-                    <p class="record-credit">$800.00</p>
+                    <p class="record-description">{{taxes.title}}</p>
+                    <p class="record-ratio">{{(tTotal/(salary/26))*100 | number:'.0-2'}}%</p>
+                    <p class="record-credit">{{tTotal | currency}}</p>
                 </div>
                 <div class="element-record">
-                    <p class="record-description">Benefit Deductions</p>
-                    <p class="record-ratio">3%</p>
-                    <p class="record-credit">$78.00</p>
+                    <p class="record-description">{{benefits.title}}</p>
+                    <p class="record-ratio">{{(bTotal/(salary/26))*100 | number:'.0-2'}}%</p>
+                    <p class="record-credit">{{bTotal | currency}}</p>
+                </div>
+                <div *ngFor="let saving of invest; index as i;">
+                    <div *ngFor="let record of saving.records; index as j;">
+                        <div class="element-record" *ngIf="record.given != true">
+                            <p class="record-description">{{record.desc}}</p>
+                            <p class="record-ratio">{{record.percentage| number:'.0-2'}}%</p>
+                            <p class="record-credit">{{(record.percentage/100)*(salary/26) | currency}}</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="element-record bold">
                     <p class="record-description" [ngStyle]="{'text-align':'right'}">total</p>
-                    <p class="record-ratio">20%</p>
-                    <p class="record-credit">$1150.00</p>
+                    <p class="record-ratio">{{100 - ((bTotal/(salary/26))*100 + ((tTotal/(salary/26))*100) +
+                        ((jTotal/(salary/26))*100)) |
+                        number:'.0-2'}}%</p>
+                    <p class="record-credit">{{check | currency}}</p>
                 </div>
             </div>
             <div class="breakdown-element">
-                <div class="element-header">Tax Deductions</div>
-                <div class="element-record">
-                    <p class="record-description">Federal Income</p>
-                    <p class="record-ratio">15%</p>
-                    <p class="record-credit">$466.00</p>
-                </div>
-                <div class="element-record">
-                    <p class="record-description">Medicare</p>
-                    <p class="record-ratio">1.5%</p>
-                    <p class="record-credit">$43.00</p>
-                </div>
-                <div class="element-record">
-                    <p class="record-description">Social Services</p>
-                    <p class="record-ratio">6%</p>
-                    <p class="record-credit">$185.00</p>
-                </div>
-                <div class="element-record">
-                    <p class="record-description">Missouri State Income</p>
-                    <p class="record-ratio">4%</p>
-                    <p class="record-credit">$128</p>
-                </div>
-                <div class="element-record">
-                    <p class="record-description">St. Louis City</p>
-                    <p class="record-ratio">1%</p>
-                    <p class="record-credit">$30.00</p>
+                <div class="element-header">{{taxes.title}}</div>
+                <div class="element-record" *ngFor="let tax of taxes.records; index as i;">
+                    <p class="record-description">{{tax.desc}}</p>
+                    <p class="record-ratio">{{tax.percentage | number:'.0-2'}}%</p>
+                    <p class="record-credit">{{(tax.percentage/100)*(salary/26) | currency}}</p>
                 </div>
                 <div class="element-record bold">
                     <p class="record-description" [ngStyle]="{'text-align':'right'}">total</p>
-                    <p class="record-ratio">26%</p>
-                    <p class="record-credit">$855.00</p>
+                    <p class="record-ratio">{{(tTotal/(salary/26))*100 | number:'.0-2'}}%</p>
+                    <p class="record-credit">{{tTotal | currency}}</p>
                 </div>
             </div>
             <div class="breakdown-element">
-                <div class="element-header">Benefit Deductions</div>
-                <div class="element-record">
-                    <p class="record-description">Medical</p>
-                    <p class="record-ratio">2%</p>
-                    <p class="record-credit">$60.00</p>
-                </div>
-                <div class="element-record">
-                    <p class="record-description">Dental</p>
-                    <p class="record-ratio">1%</p>
-                    <p class="record-credit">$5.00</p>
-                </div>
-                <div class="element-record">
-                    <p class="record-description">Vision</p>
-                    <p class="record-ratio">1%</p>
-                    <p class="record-credit">$4.00</p>
+                <div class="element-header">{{benefits.title}}</div>
+                <div class="element-record" *ngFor="let benefit of benefits.records; index as i;">
+                    <p class="record-description">{{benefit.desc}}</p>
+                    <p class="record-ratio">{{(benefit.cost/(salary/26))*100 | number:'.0-2'}}%</p>
+                    <p class="record-credit">{{benefit.cost | currency}}</p>
                 </div>
                 <div class="element-record bold">
                     <p class="record-description" [ngStyle]="{'text-align':'right'}">total</p>
-                    <p class="record-ratio">4%</p>
-                    <p class="record-credit">$69.00</p>
+                    <p class="record-ratio">{{(bTotal/(salary/26))*100 | number:'.0-2'}}%</p>
+                    <p class="record-credit">{{bTotal | currency}}</p>
+                </div>
+            </div>
+            <div class="breakdown-element" *ngFor="let saving of invest; index as i;">
+                <div class="element-header">{{saving.title}}</div>
+                <div class="element-record" *ngFor="let record of saving.records; index as j;">
+                    <p class="record-description">{{record.desc}}</p>
+                    <p class="record-ratio">{{record.percentage | number:'.0-2'}}%</p>
+                    <p class="record-credit">{{(record.percentage/100)*(salary/26) | currency}}</p>
+                </div>
+                <div class="element-record bold">
+                    <p class="record-description" [ngStyle]="{'text-align':'right'}">total</p>
+                    <p class="record-ratio">{{((iTotal/(salary/26))*100) + ((jTotal/(salary/26))*100) | number:'.1-2'}}%
+                    </p>
+                    <p class="record-credit">{{iTotal + jTotal | currency}}</p>
                 </div>
             </div>
         </div>
-        <div class="breakdown-category breakdown-expense">
-            <div class="breakdown-element">
-                <div class="element-header">Rent</div>
-                <div class="element-record">
-                    <p class="record-description">4400 Manchester 306</p>
-                    <p class="record-ratio">15%</p>
-                    <p class="record-debit">$900.00</p>
-                </div>
-                <div class="element-record">
-                    <p class="record-description">720 Olive Street</p>
-                    <p class="record-ratio">5%</p>
-                    <p class="record-credit">$250.00</p>
-                </div>
-                <div class="element-record bold">
-                    <p class="record-description" [ngStyle]="{'text-align':'right'}">total</p>
-                    <p class="record-ratio">20%</p>
-                    <p class="record-credit">$1150.00</p>
+        <div class="breakdown-category breakdown-expense" [ngStyle]="{'margin':'0 0 0 1.6'+'%', 'width': 20+'%'}">
+            <div *ngFor="let expense of expenses; index as i;">
+                <div class="breakdown-element" *ngIf="expense.need == true">
+                    <fa-icon class="element" (click)="toggleOverlay(expense)" [icon]="settings"></fa-icon>
+                    <div class="element-header">{{expense.title}}</div>
+                    <div class="element-record" *ngFor="let record of expense.records; index as j;">
+                        <p class="record-description">{{record.desc}}</p>
+                        <p class="record-ratio">{{(record.cost/(salary/12))*100 | number:'.0-2'}}%</p>
+                        <p class="record-credit">{{record.cost | currency}}</p>
+                    </div>
+                    <div class="element-record bold">
+                        <p class="record-description" [ngStyle]="{'text-align':'right'}">total</p>
+                        <p class="record-ratio">{{((eTotals[i]/(salary/12))*100) | number:'.0-2'}}%
+                        </p>
+                        <p class="record-credit">{{eTotals[i] | currency}}</p>
+                    </div>
                 </div>
             </div>
-            <div class="breakdown-element">
-                <div class="element-header">Insurnace</div>
-                <div class="element-record">
-                    <p class="record-description">Car</p>
-                    <p class="record-ratio">3%</p>
-                    <p class="record-debit">$110.00</p>
-                </div>
-                <div class="element-record bold">
-                    <p class="record-description" [ngStyle]="{'text-align':'right'}">total</p>
-                    <p class="record-ratio">20%</p>
-                    <p class="record-credit">$1150.00</p>
+        </div>
+        <div class="breakdown-category breakdown-expense"
+            [ngStyle]="{'margin':'0 .8'+'%'+ '0 .8'+'%', 'width': 20+'%'}">
+            <div *ngFor="let expense of expenses; index as i;">
+                <div class="breakdown-element" *ngIf="expense.need == false">
+                    <fa-icon class="element" (click)="toggleOverlay(expense)" [icon]="settings"></fa-icon>
+                    <div class="element-header">{{expense.title}}</div>
+                    <div class="element-record" *ngFor="let record of expense.records; index as j;">
+                        <p class="record-description">{{record.desc}}</p>
+                        <p class="record-ratio">{{(record.cost/(salary/12))*100 | number:'.0-2'}}%</p>
+                        <p class="record-credit">{{record.cost | currency}}</p>
+                    </div>
+                    <div class="element-record bold">
+                        <p class="record-description" [ngStyle]="{'text-align':'right'}">total</p>
+                        <p class="record-ratio">{{((eTotals[i]/(salary/12))*100) | number:'.0-2'}}%
+                        </p>
+                        <p class="record-credit">{{eTotals[i] | currency}}</p>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="breakdown-category breakdown-savings">
-            <p class="title">Saving</p>
-            <p class="percentage">20%</p>
-            <p class="amount">$250.00</p>
+            <div class="breakdown-element" *ngFor="let saving of savings; index as i;">
+                <fa-icon class="element" (click)="toggleOverlay(saving)" [icon]="settings"></fa-icon>
+                <div class="element-header">{{saving.title}}</div>
+                <div class="element-record" *ngFor="let record of saving.records; index as j;">
+                    <p class="record-description">{{record.desc}}</p>
+                    <p class="record-ratio">{{(record.cost/(salary/12))*100 | number:'.0-2'}}%</p>
+                    <p class="record-credit">{{record.cost | currency}}</p>
+                </div>
+                <div class="element-record bold">
+                    <p class="record-description" [ngStyle]="{'text-align':'right'}">total</p>
+                    <p class="record-ratio">{{((sTotals[i]/(salary/12))*100) | number:'.0-2'}}%
+                    </p>
+                    <p class="record-credit">{{sTotals[i]| currency}}</p>
+                </div>
+            </div>
         </div>
+    </div>
+    <div *ngIf="editing">
+        <div id="overlay"></div>
+        <!-- <form (ngSubmit)='updateBudget(searchForm)' #searchForm='ngForm'> -->
+        <div id="overlay-edit">
+            <div id="edit-stop">
+                <fa-icon [icon]="stop" (click)="toggleOverlay('')"></fa-icon>
+            </div>
+            <div id="edit-title">Editing {{object.title}}</div>
+            <div class="edit-record" *ngFor="let record of object.records; index as i;">
+                <div *ngIf="editingElement == i; else elseBlock">
+                    <fa-icon id="delete" [icon]="delete" (click)="deleteElement(record)"></fa-icon>
+                    <fa-icon id="edit" [icon]="edit" (click)="updatelement(i)"></fa-icon>
+                    <input class="edit-desc" type="text" placeholder="{{record.desc}}" autocomplete="off"
+                        [(ngModel)]='desc' #lo='ngModel'>
+                    <input class="edit-cost" type="text" placeholder="{{record.cost | currency}}" autocomplete="off"
+                        [(ngModel)]='cost' #lo='ngModel'>
+                </div>
+                <ng-template #elseBlock>
+                    <fa-icon id="delete" [icon]="delete" (click)="deleteElement(record)"></fa-icon>
+                    <fa-icon id="edit" [icon]="edit" (click)="updatelement(i)"></fa-icon>
+                    <input disabled class="edit-desc" type="text" placeholder="{{record.desc}}" autocomplete="off"
+                        [(ngModel)]='desc' #lo='ngModel'>
+                    <input disabled class="edit-cost" type="text" placeholder="{{record.cost | currency}}"
+                        autocomplete="off" [(ngModel)]='cost' #lo='ngModel'>
+                </ng-template>
+            </div>
+            <div id="edit-add">
+                <button>
+                    <fa-icon [icon]="add" (click)="updatelement(0)"></fa-icon>
+                </button>
+            </div>
+            {{elementDesc}}
+            {{elementCost}}
+        </div>
+        <!-- </form> -->
     </div>
 </div>

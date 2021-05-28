@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { locationReducer } from './location-reducer';
 
 // services
+import { BudgetService } from './services/budget/budget.service';
 import { CalendarService } from './services/calendar/calendar.service';
 import { EntertainmentService } from './services/entertainment/entertainment.service';
 import { NotificationsService } from './services/notifications/notifications.service';
@@ -76,6 +77,7 @@ import { OverviewComponent } from './budget/overview/overview.component';
     }),
   ],
   providers: [
+    BudgetService,
     CalendarService,
     EntertainmentService,
     NotificationsService,

@@ -6,18 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./budget.component.css']
 })
 export class BudgetComponent implements OnInit {
-
-  overview: string
-
-  constructor() { 
-    this.overview = "none"
-  }
+  constructor() {}
 
   ngOnInit(): void {
   }
-
-  budgetOverview(person: string) {
-    this.overview = person
-  }
-
 }
